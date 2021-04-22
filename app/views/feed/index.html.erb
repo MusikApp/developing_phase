@@ -10,4 +10,22 @@
     <%= link_to 'logout', destroy_user_session_path, method: :delete %>
   <% end %>
 
+  <% @users.each do |user| %>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= user.email %></h5>
+        
+<% if user == current_user %>
+  <h2>Followers: <%= user.followers.count %></h2>
+  <h2>Following: <%= user.following.count %></h2>
+<% else %>
+  <%= link_to 'Follow', user_relationships_path, method: :post unless user.followers.find_by(follower: current_user).present? %>
+  <%= link_to 'Unfollow', relationships_destroy_path(Relationship.where(user.followers.where(follower_id: current_user.id)).id, method: :delete if user.followers.find_by(follower: current_user).present? %>
+  <h2>Followers: <%= user.followers.count %></h2>
+  <h2>Following: <%= user.following.count %></h2>
+<% end %>
+
+        </div>
+    </div>
+  <% end %>
 </div>
