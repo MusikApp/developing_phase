@@ -1,0 +1,13 @@
+<div>
+  <%= current_user ? "Hello user: #{current_user.name}" : 'Hi stranger!' %> <!-- operador ternario -->
+  <br>
+
+    <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar %>  
+    <% end %>
+
+  <% if current_user %> <!-- en caso de tener un usuario, ponermos el link al path, le psasmos el current user, y todo a travez del metodo delete el session_path es el prefijo al destroy y usamos el metodo :delete-->
+    <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+  <% end %>
+
+</div>
