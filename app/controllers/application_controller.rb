@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
         user.permit(:avatar, :username, :name, :last_name, :email, :password, :password_confirmation, :current_password) 
         end
     end
+
+    def after_sign_out_path_for(current_user)
+        new_user_session_path
+    end
 end

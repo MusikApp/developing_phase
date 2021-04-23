@@ -12,7 +12,15 @@ import jQuery from "jquery"
 global.$ = global.jQuery = jQuery
 window.$ = window.jQuery = jQuery
 
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+$(document).on('turbolinks:load', () => {
+    $(".navbar-thumbnail").on("click", () => {
+        $(".menu").toggle();
+        $(".menu-list").on("click", () => {
+            $(".menu").hide();
+        })
+    })
+})

@@ -14,9 +14,47 @@
  *= require_self
  */
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
 .navbar-thumbnail {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.menu {
+    position: absolute;
+    right: 0;
+    top: 70px;
+    min-width: 200px;
+    min-height: 200px;
+    background-color: rgb(242, 242, 242);
+    border-radius: 10px;
+    display: none;
+}
+
+.menu li {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+.menu-list {
+    padding-top: 20px;
+}
+
+/* fontawesome icons <i> */
+
+.fas {
+    color:  rgb(96, 114, 131);
+    font-size: 30px;
 }
