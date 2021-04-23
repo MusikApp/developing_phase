@@ -44,7 +44,7 @@ body {
 
 .menu {
     position: absolute;
-    right: 0;
+    right: 200px;
     top: 50px;
     min-width: 200px;
     min-height: 200px;
@@ -86,4 +86,29 @@ body {
 .profile-thumbnail {
     border-radius: 50%;
     width: 150px;
+}
+
+.profile {
+    width: 100%;
+    padding: 0 15%;
+}
+
+.avatar-section {
+    width: 40%;
+    display: inline;
+    padding-left: 15%;
+}
+
+.details-section {
+    width: 60%;
+    float: right;
+}
+
+.details-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.details-section li {
+    margin-right: 10px;
 }
