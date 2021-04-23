@@ -1,6 +1,6 @@
 <div class="menu">
   <ul class="menu-list">
-    <li>Perfil</li>
+    <li><%= link_to 'Perfil', profile_path %></li>
     <li>Otro Menos</li>
     <li><%= link_to 'Editar Perfil', edit_user_registration_path %></li>
     <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
