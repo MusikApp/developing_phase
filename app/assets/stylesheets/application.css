@@ -112,3 +112,12 @@ body {
 .details-section li {
     margin-right: 10px;
 }
+
+.media {
+    width: 300px;
+}
+
+.test li {
+    list-style-type: none;
+    margin-right: 5px;
+}

@@ -6,9 +6,24 @@ class User < ApplicationRecord
 
   has_many :following, foreign_key: "follower_id", class_name: "Relationship"
   has_many :followers, foreign_key: "followed_id", class_name: "Relationship"
+  has_many :posts
          
-  has_one_attached :avatar    
+  has_one_attached :avatar  
+  validate :acceptable_avatar 
   after_commit :add_default_avatar, on: %i[ create update ] 
+
+  def acceptable_avatar
+    return unless avatar.attached?
+
+    unless avatar.byte_size <= 4.megabyte
+      errors.add(:avatar, "is too big")
+    end
+
+    acceptable_types = ["image/jpeg", "image/png", "image/jpg"]
+    unless acceptable_types.include?(avatar.content_type)
+    errors.add(:avatar, "must be a JPEG, JPG or PNG")
+    end
+  end
 
   def avatar_thumbnail
     if avatar.attached?
