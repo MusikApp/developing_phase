@@ -7,5 +7,14 @@ class User < ApplicationRecord
   has_many :following, foreign_key: "follower_id", class_name: "Relationship"
   has_many :followers, foreign_key: "followed_id", class_name: "Relationship"
          
-  has_one_attached :avatar           
+  has_one_attached :avatar     
+  
+  def avatar_thumbnail
+    if avatar.attached?
+      avatar.variant(resize: '150x150!').processed
+    else
+      '/default_profile.png'
+    end
+  end
+
 end
