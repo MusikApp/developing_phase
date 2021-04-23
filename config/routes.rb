@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :relationships, only: [:destroy]
 
   root 'feed#index'
+  get 'profile', to: 'profile#index'
 
 end

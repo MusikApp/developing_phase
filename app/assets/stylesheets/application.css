@@ -25,6 +25,12 @@ body {
     border: none;
 }
 
+.navbar {
+    width: 100%;
+    padding: 10px 15%;
+    background-color: rgb(242, 242, 242);
+}
+
 .navbar-thumbnail {
     width: 30px;
     height: 30px;
@@ -32,10 +38,14 @@ body {
     cursor: pointer;
 }
 
+.nav-item {
+    margin-left: 15px;
+}
+
 .menu {
     position: absolute;
     right: 0;
-    top: 70px;
+    top: 50px;
     min-width: 200px;
     min-height: 200px;
     background-color: rgb(242, 242, 242);
@@ -46,6 +56,19 @@ body {
 .menu li {
     list-style-type: none;
     margin-bottom: 10px;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.menu li:hover {
+    background-color:rgb(193, 193, 193);
+}
+
+.menu a {
+    outline: none;
+    text-decoration: none;
+    color: rgb(110, 127, 145);
+    font-weight: bold;
 }
 
 .menu-list {
@@ -57,4 +80,10 @@ body {
 .fas {
     color:  rgb(96, 114, 131);
     font-size: 30px;
+}
+
+/* Profile Styles */
+.profile-thumbnail {
+    border-radius: 50%;
+    width: 150px;
 }

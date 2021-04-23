@@ -1,0 +1,13 @@
+<%= current_user.name %>
+<%= current_user.last_name %>
+<%= current_user.username %>
+
+followers:<%= current_user.followers.count %>
+following:<%= current_user.following.count %>
+
+<div class="avatar-section">
+    <%= image_tag current_user.avatar_thumbnail, :class => "profile-thumbnail" %>
+</div>
+
+<div class="details-section">
+</div>
