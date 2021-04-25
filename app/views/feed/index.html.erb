@@ -1,7 +1,49 @@
+<div class="feed">
+  <div class="post-new">
+    <%= render "posts/formv2" %>
+  </div>
 
+  <% @posts.each do |post| %>
+    <div class="card">
+      <div class="card-body">
+        <div class="head">
+          <div class="post-avatar">
+            <%= image_tag post.user.avatar_thumbnail, :class => "post-thumbnail" %>
+          </div>
+          <div class="post-title">  
+            <p><%= post.user.username %></p>
+            <p><%= I18n.l(post.created_at, format: '%d de %B de %Y') %></p>
+          </div>
+        </div>
+        <br>
+        <div class="post-content">
+          <%= post.content %>
+        </div>
+        <br>
+        <% if post.image.attached? %>
+          <div class="image-wrapper">
+            <%= image_tag post.image_thumbnail %>
+          </div>
+        <% end %>
+        <% if post.video.attached? %>
+          <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="500"
+            height="400"
+            poster=""
+            data-setup="{}"
+          >
+            <source src="<%= url_for(post.video) %>"/>
+          </video>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
-<div>
-  <% @users.each do |user| %>
+  <!--<% @users.each do |user| %>
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title"><%= user.email %></h5>
@@ -19,5 +61,6 @@
 
         </div>
     </div>
-  <% end %>
+  <% end %>-->
 </div>
+

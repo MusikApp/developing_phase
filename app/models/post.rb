@@ -11,11 +11,11 @@ class Post < ApplicationRecord
     end
   end
 
-  def video_thumbnail
-    if video.attached?
-      video.variant(resize_to_fit: [500, 400]).processed
-    end
-  end
+  # def video_thumbnail
+  #   if video.attached?
+  #     video.variant(resize_to_fit: [500, 400]).processed
+  #   end
+  # end
 
   def acceptable_image
     return unless image.attached?

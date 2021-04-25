@@ -29,6 +29,9 @@ body {
     width: 100%;
     padding: 10px 15%;
     background-color: rgb(242, 242, 242);
+    position: fixed;
+    margin-bottom: 30px;
+    z-index: 3;
 }
 
 .navbar-thumbnail {
@@ -44,7 +47,7 @@ body {
 
 .menu {
     position: absolute;
-    right: 200px;
+    right: 180px;
     top: 50px;
     min-width: 200px;
     min-height: 200px;
@@ -62,6 +65,7 @@ body {
 
 .menu li:hover {
     background-color:rgb(193, 193, 193);
+    border-radius: 5px;
 }
 
 .menu a {
@@ -72,7 +76,8 @@ body {
 }
 
 .menu-list {
-    padding-top: 20px;
+    
+    padding: 20px 10px;
 }
 
 /* fontawesome icons <i> */
@@ -142,4 +147,90 @@ body {
     background: white;
     cursor: inherit;
     display: block;
+}
+
+/* Cards for posts */
+
+.feed {
+    width: 100%;
+    z-index: 1;
+    padding-top: 40px;
+}
+
+.post-new {
+    width: 25%;  
+    margin-right: 15%; 
+    border: 1px solid rgb(242, 242, 242);
+    position: fixed;
+    right: 0;
+    background-color: rgb(242, 242, 242);
+}
+
+.post-new textarea {
+    width: 82%;
+    margin: 15px 9%;
+    padding: 5px 10px;
+    border: 1px solid rgb(242, 242, 242);
+    border-radius: 5px;
+    outline: none;
+}
+
+.card {
+    width: 40%;
+    margin-left: 15%;
+    border: 1px solid rgb(242, 242, 242);
+}
+
+.card-body {
+    width: 90%;
+    margin-left: 4%;
+}
+
+.head {
+    margin-bottom: 0.5rem;
+}
+
+.post-avatar {
+    width: 10%;
+    display: inline;
+    margin-right: 2%;
+}
+
+.post-title {
+    width: 85%;
+    float: right;
+}
+
+.post-title p {
+    margin: 0;
+}
+
+.post-thumbnail {
+    border-radius: 50%;
+    width: 50px;
+}
+
+.post-content {
+    margin-bottom: 1px;
+}
+
+.post-actions {
+    display: inline-flex;
+    width: 100%;
+    align-items: baseline;
+    justify-content: flex-end;
+    padding-right: 9%;
+    margin: 0;
+}
+
+.fa-image, .fa-film {
+    font-size: 30px;
+}
+
+.post-submit {
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(96, 114, 131);
+    margin-left: 15px;
 }
