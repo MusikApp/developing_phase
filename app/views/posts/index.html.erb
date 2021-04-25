@@ -2,18 +2,28 @@
 
 <h1>Posts</h1>
 
-
   
     <% @posts.each do |post| %>
     <div class="card">
         <%= post.content %>
-        <% if post.file.attached? %>
-          <% unless post.file.filename.to_s.include? "image" %>
-            <%= image_tag post.file %>
-          <% end %>
-          <% unless post.file.filename.to_s.include? "video" %>
-            <video src="<%= post.file %>"></video>
-          <% end %>
+        <% if post.image.attached? %>
+          <div class="image-wrapper">
+            <%= image_tag post.image_thumbnail %>
+          </div>
+        <% end %>
+        <% if post.video.attached? %>
+          <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="500"
+            height="400"
+            poster="<%= url_for(post.video) %>"
+            data-setup="{}"
+          >
+            <source src="<%= url_for(post.video) %>"/>
+          </video>
         <% end %>
         <ul class="d-inline-flex test">
           <li><%= link_to 'Show', post %></li>

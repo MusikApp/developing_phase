@@ -24,3 +24,10 @@ $(document).on('turbolinks:load', () => {
         })
     })
 })
+
+$(document).ready(function () {
+	$('.upload-image input[type="submit"]').hide();
+	$("#user_avatar").change(function(){
+	    $(".upload-image-form").submit();
+	});
+});
