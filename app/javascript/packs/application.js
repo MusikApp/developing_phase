@@ -16,10 +16,10 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-$(document).on('turbolinks:load', () => {
-    $(".navbar-thumbnail").on("click", () => {
+$(document).on('turbolinks:load', function() {
+    $(".navbar-thumbnail").on("click", function() {
         $(".menu").toggle();
-        $(".menu-list").on("click", () => {
+        $(".menu-list").on("click", function() {
             $(".menu").hide();
         })
     })

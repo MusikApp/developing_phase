@@ -1,0 +1,35 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="field">
+    <label class="btn btn-file">
+      <i class="fas fa-image"></i>
+      <%= form.file_field :image, accept: "image/*" %>
+    </label>
+  </div>
+
+  <div class="field">
+    <label class="btn btn-file">
+      <i class="fas fa-film"></i>
+      <%= form.file_field :video, accept: "video/*" %>
+    </label>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Publicar" %>
+  </div>
+<% end %>

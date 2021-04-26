@@ -9,9 +9,12 @@
     <% end %>
   </div>
 
-  <div class=”field”>
-    <%= f.file_field :avatar %> 
-  </div>  
+  <div class="field">
+    <label class="btn btn-file">
+      <i class="fas fa-image"></i>
+      <%= f.file_field :avatar, accept: "image/*" %>
+    </label>
+  </div>
 
   <div class="field">
     <%= f.label :name %><br />
