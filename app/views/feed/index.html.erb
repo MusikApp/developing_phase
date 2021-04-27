@@ -1,3 +1,4 @@
+<%= render "partials/nav" %>
 <div class="feed">
   <div class="post-new">
     <%= render "posts/formv2" %>
@@ -11,7 +12,7 @@
             <%= image_tag post.user.avatar_thumbnail, :class => "post-thumbnail" %>
           </div>
           <div class="post-title">  
-            <p><%= post.user.username %></p>
+            <p> <%= link_to(post.user.username, profile_user_path(post.user.id)) %></p>
             <p><%= I18n.l(post.created_at, format: '%d de %B de %Y') %></p>
           </div>
         </div>
@@ -26,18 +27,7 @@
           </div>
         <% end %>
         <% if post.video.attached? %>
-          <video
-            id="my-video"
-            class="video-js"
-            controls
-            preload="auto"
-            width="500"
-            height="400"
-            poster=""
-            data-setup="{}"
-          >
-            <source src="<%= url_for(post.video) %>"/>
-          </video>
+          <%= video_tag(url_for(post.video), :controls => "", :width => "500", :height => "400") %>
         <% end %>
       </div>
     </div>

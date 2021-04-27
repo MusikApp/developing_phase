@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   root 'feed#index'
   get 'profile', to: 'profile#index'
+  get 'profile/:id', to: 'profile#show', as: 'profile_user'
 
 end
