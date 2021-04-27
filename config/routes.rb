@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    resources :likes, only: %i[create destroy]
+  end
+
+
   devise_for :users
   
   resources :users do 

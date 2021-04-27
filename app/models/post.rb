@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_one_attached :video
+  has_many :likes, dependent: :destroy
   validate :acceptable_image
   validate :acceptable_video
 
