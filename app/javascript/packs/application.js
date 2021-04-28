@@ -17,8 +17,17 @@ Turbolinks.start()
 ActiveStorage.start()
 
 $(document).on('turbolinks:load', function() {
-    $(".navbar-thumbnail").on("click", function() {
+
+    $(".navbar-thumbnail").on("mouseover", function() {
         $(".menu").toggle();
+        $(document).on("mouseup", function(e) {
+            var container = $(".menu");
+        
+            if (!container.is(e.target) && container.has(e.target).length === 0) 
+            {
+                container.hide();
+            }
+        })
         $(".menu-list").on("click", function() {
             $(".menu").hide();
         })

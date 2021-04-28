@@ -95,13 +95,83 @@ body {
 
 .profile {
     width: 100%;
-    padding: 0 15%;
+    padding: 40px 15%;
+    margin-bottom: 40px;
+}
+
+.profile-media-wrapper {
+    width: 35%;
+    margin-left: 15%;
+    padding: 0;
+}
+
+.profile-text-wrapper {
+    width: 25%;
+    margin-right: 15%;
+    float: right;
+    padding: 0;
+}
+
+.profile-post-wrapper {
+    width: 100%;
+    border: 1px solid rgb(242, 242, 242);
+    margin-bottom: 40px;
+}
+
+.profile-post-wrapper .head {
+    width: 90%;
+    margin-left: 4%;
+    margin-top: 15px;    
+}
+
+.profile-post-avatar {
+    width: 10%;
+    display: inline;
+}
+
+.profile-post-title {
+    width: 80%;
+    float: right;
+}
+
+.profile-post-title p {
+    margin: 0;
+}
+
+.profile-post-content {
+    width: 90%;
+    margin-left: 4%;
+    padding-bottom: 15px;
+}
+
+.profile-images, 
+.profile-videos {
+    margin-bottom: 30px;
 }
 
 .avatar-section {
     width: 40%;
     display: inline;
     padding-left: 15%;
+}
+
+.name {
+    display: flex;
+    align-items: flex-start;
+}
+
+.edit-button {
+    padding: 3px 10px;
+    border-radius: 5px;
+    background-color: rgb(96, 114, 131);
+    color: white;
+    text-decoration: none;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.edit-button:hover {
+    color: rgb(181, 195, 208);
 }
 
 .details-section {
@@ -157,18 +227,53 @@ body {
     padding-top: 40px;
 }
 
+.search-section {
+    width: 27.5%;  
+    margin-right: 10%; 
+    position: fixed;
+    right: 0;
+    border: 1px solid rgb(242, 242, 242);
+    background-color: rgb(242, 242, 242);
+}
+
+.search-bar {
+    width: 82%;
+    margin: 15px 9%;
+}
+
+.search-bar input {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+    outline: none;
+}
+
+.search-submit {
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(96, 114, 131);
+    float: right;
+    margin-top: 14px;
+    margin-bottom: 13px;
+}
+
 .post-new {
-    width: 25%;  
-    margin-right: 15%; 
+    width: 27.5%;  
+    margin-right: 10%; 
     border: 1px solid rgb(242, 242, 242);
     position: fixed;
     right: 0;
+    margin-top: 130px;
     background-color: rgb(242, 242, 242);
 }
 
 .post-new textarea {
     width: 82%;
-    margin: 15px 9%;
+    margin: 0 9%;
+    margin-top: 20px;
     padding: 5px 10px;
     border: 1px solid rgb(242, 242, 242);
     border-radius: 5px;
@@ -176,14 +281,21 @@ body {
 }
 
 .card {
-    width: 40%;
-    margin-left: 15%;
+    width: 47.5%;
+    margin-left: 10%;
     border: 1px solid rgb(242, 242, 242);
+    background-color: #f8f8f8;
+    margin-bottom: 15px;
+}
+
+.card a {
+    color: #60728d;
+    text-decoration: none;
+    font-size: 1.4rem;
 }
 
 .card-body {
-    width: 90%;
-    margin-left: 4%;
+    width: 100%;
 }
 
 .head {
@@ -197,12 +309,16 @@ body {
 }
 
 .post-title {
-    width: 85%;
+    width: 90%;
     float: right;
 }
 
 .post-title p {
     margin: 0;
+}
+
+.post-date {
+    font-size: 0.8rem;
 }
 
 .post-thumbnail {
@@ -233,4 +349,192 @@ body {
     color: white;
     background-color: rgb(96, 114, 131);
     margin-left: 15px;
+}
+
+/* Login section styles */
+
+.login {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(242, 242, 242);
+}
+
+.login-logo {
+    padding-top: 50px;
+}
+
+.login-form {
+    width: 35%;
+    position: fixed;
+    right: 0;
+    margin-top: 90px;
+    margin-right: 8%;
+    border: 1px solid rgb(242, 242, 242);
+    text-align: center;
+    background-color: white;
+    z-index: 3;
+    border-radius: 25px;
+    padding-bottom: 50px;
+}
+
+.login-form input {
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 85%;
+    border: 1px solid rgb(242, 242, 242);
+    margin-top: 50px;
+}
+
+.login-form a {
+    color: #60728d;
+    text-decoration: none;
+}
+
+.login-form a:hover {
+    color: rgb(80, 80, 242);
+}
+
+.login-button {
+    background-color: #60728d;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.carousel {
+    width: 100%;
+    z-index: 1;
+}
+
+.signup-form {
+    width: 100%;
+}
+
+.signup-form input {
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 49%;
+    border: 1px solid rgb(242, 242, 242);
+    margin-bottom: 25px;
+}   
+
+.signup-form .actions {
+    width: 100%;
+    text-align: center;
+}
+
+.signup-button { 
+    background-color: #60728d;
+    color: white;
+    margin: 50px 0;
+}
+
+/* Update Profile Page Styles */ 
+
+.fields {
+    display: grid;
+    width: 90%;
+    padding-top: 25px;
+    margin-top: 30px;
+    margin-left: 5%;
+    grid-template-columns: 25% 30% 30%;
+    grid-template-rows: 100px 150px 100px 100px 100px;
+    gap: 15px 10px;
+    background-color: rgb(242, 242, 242);
+}
+
+.fields input {
+    margin-left: 10%;
+    width: 80%;
+}
+
+.fields label {
+    margin-left: 10%;
+    width: 80%;
+}
+
+.fields textarea {
+    width: 90%;
+    margin-left: 5%;
+    height: 120px;
+}
+
+.update-avatar {
+    width: 200px;
+}
+
+.avatar-field {
+    text-align: center;
+}
+
+.avatar-submit {
+    color: white;
+    background-color: #60728d;
+    border-radius: 5px;
+    margin-right: 15%;
+    margin-left: 0;
+}
+
+.description-field {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    width: 100%;
+}
+
+.description-field label {
+    margin-left: 5%;
+}
+
+.password-field {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.min-chars {
+    margin-left: 10%;
+}
+
+.password-confirmation-field {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+.confirm-update-field {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.confirm-ad {
+    margin-left: 10%;
+}
+
+.button-actions {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+.submit-update {
+    color: white;
+    background-color: #60728d;
+    border-radius: 5px;
+}
+
+.back-field {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.back-field a {
+    outline: none;
+    color: rgb(96, 114, 131);
+    text-decoration: none;
+}
+
+.back-field a:hover {
+    font-size: 1.1rem;
+}
+
+.invisible-input {
+    margin-right: 10%;
 }

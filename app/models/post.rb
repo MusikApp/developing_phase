@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
   def image_thumbnail
     if image.attached?
-      image.variant(resize_to_fit: [500, 400]).processed
+      image.variant(resize_to_fill: [650, 500]).processed
     end
   end
 
@@ -22,7 +22,7 @@ class Post < ApplicationRecord
   def acceptable_image
     return unless image.attached?
 
-    unless image.byte_size <= 4.megabyte
+    unless image.byte_size <= 11.megabyte
       errors.add(:file, "is too big")
     end
 
