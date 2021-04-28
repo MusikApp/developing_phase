@@ -1,11 +1,15 @@
 <%= render "partials/nav" %>
+
 <div class="profile">
     <div class="avatar-section">
         <%= image_tag current_user.avatar_thumbnail, :class => "profile-thumbnail" %>
     </div>
 
     <div class="details-section">
-        <h2><%= current_user.username %></h2>
+        <div class="name">
+            <h2><%= current_user.username %></h2>
+            <%= link_to 'Editar Perfil', edit_user_registration_path, class: "edit-button" %>
+        </div>
         <ul class="d-inline-flex">
             <li><%= current_user.posts.count %><strong> Publicaciones</strong></li>
             <li><%= current_user.followers.count %><strong> Seguidores</strong></li>
@@ -17,41 +21,49 @@
         </p>
     </div>
 </div>
-<div class="profile-text-wrapper">
-    <% @my_posts.each do |post| %>
-        <% if post.image.attached? == false %>
-            <div class="profile-post-wrapper">
-                <div class="head">
-                    <div class="profile-post-avatar">
-                        <%= image_tag post.user.avatar_thumbnail, :class => "post-thumbnail" %>
+
+<div class="posts">
+    <% if @my_posts.count >= 1 %>
+        <div class="profile-text-wrapper">
+            <% @my_posts.each do |post| %>
+                <% if post.image.attached? == false %>
+                    <div class="profile-post-wrapper">
+                        <div class="head">
+                            <div class="profile-post-avatar">
+                                <%= image_tag post.user.avatar_thumbnail, :class => "post-thumbnail" %>
+                            </div>
+                            <div class="profile-post-title">  
+                                <p><%= post.user.username %></p>
+                                <p><%= I18n.l(post.created_at, format: '%d de %B de %Y') %></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="profile-post-content">
+                            <%= post.content %>
+                        </div>
                     </div>
-                    <div class="profile-post-title">  
-                        <p><%= post.user.username %></p>
-                        <p><%= I18n.l(post.created_at, format: '%d de %B de %Y') %></p>
-                    </div>
+                <% end %>
+            <% end %>
+        </div>
+
+        <div class="profile-media-wrapper">
+            <% @my_posts.each do |post| %>
+                <div class="profile-images">
+                    <% if post.image.attached? %>
+                        <%= image_tag post.image_thumbnail %>
+                    <% end %>
                 </div>
-                <br>
-                <div class="profile-post-content">
-                    <%= post.content %>
+                <div class="profile-videos">
+                    <% if post.video.attached? %>
+                        <%= video_tag(url_for(post.video), :controls => "", :width => "500", :height => "400") %>
+                    <% end %>
                 </div>
-            </div>
-        <% end %>
-    <% end %>
+            <% end %>
+        </div>
+    <% else %>
+        <p class="text-center"><strong>No hay publicaciones por mostrar</strong></p>
+    <% end %>    
 </div>
 
-<div class="profile-media-wrapper">
-    <% @my_posts.each do |post| %>
-        <div class="profile-images">
-            <% if post.image.attached? %>
-                <%= image_tag post.image_thumbnail %>
-            <% end %>
-        </div>
-        <div class="profile-videos">
-            <% if post.video.attached? %>
-                <%= video_tag(url_for(post.video), :controls => "", :width => "500", :height => "400") %>
-            <% end %>
-        </div>
-    <% end %>
-</div>
 
 

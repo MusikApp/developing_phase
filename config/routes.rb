@@ -3,8 +3,7 @@ Rails.application.routes.draw do
     resources :likes, only: %i[create destroy]
   end
 
-
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => :registrations }
   
   resources :users do 
     resources :relationships, only: [:create]
