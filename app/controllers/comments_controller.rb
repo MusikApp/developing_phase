@@ -23,8 +23,10 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    @comment = Comment.new(comment_params.merge(user_id: current_user.id))
-    @comment.post = @post
+    @comment = Comment.new
+    @comment.content = params[:content]
+    @comment.post_id = params[:post_id]
+    @comment.user_id = current_user.id
 
     respond_to do |format|
       if @comment.save
@@ -33,6 +35,24 @@ class CommentsController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def reply
+    @reply = Comment.new
+    @reply.content = params[:content]
+    @reply.post_id = params[:post_id]
+    @reply.user_id = current_user.id
+    @reply.reply_id = params[:id]
+
+    respond_to do |format|
+      if @reply.save
+        format.html { redirect_to root_path, notice: "Reply was successfully created." }
+        format.json { render :show, status: :created, location: @reply }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @reply.errors, status: :unprocessable_entity }
       end
     end
   end

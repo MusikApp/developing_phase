@@ -7,6 +7,9 @@ class FeedController < ApplicationController
         # @post = Post.find(params[:post_id])
         # @comment = @post.comments.new 
 
+        @comments = Comment.all
+        @comment = Comment.new
+
         @q = params[:query]
     
         if @q
@@ -18,6 +21,5 @@ class FeedController < ApplicationController
                 @posts = Post.all
             end
         end
-
     end
 end
