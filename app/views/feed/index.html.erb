@@ -51,6 +51,15 @@
         <% end %>
       <% end %>
         <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Me gusta' : 'Me gustan'%></p>
+
+
+<!--Comment section-->
+
+
+
+
+
+
       </div>
     </div>
   <% end %>
@@ -60,19 +69,18 @@
       <div class="card-body">
         <h5 class="card-title"><%= user.email %></h5>
         
-      <% if user == current_user %>
+      <%# <% if user == current_user %> %>
         <h2>Followers: <%= user.followers.count %></h2>
         <h2>Following: <%= user.following.count %></h2>
-      <% else %>
-        <%= link_to 'Follow', user_relationships_path(user), method: :post unless user.followers.find_by(follower: current_user).present? %>
-        <%= link_to 'Unfollow', relationship_path(user.followers.find_by(follower: current_user)), method: :delete if user.followers.find_by(follower: current_user).present? %>
+      <%# <% else %> %>
+        <%# <%= link_to 'Follow', user_relationships_path(user), method: :post unless user.followers.find_by(follower: current_user).present? %> %>
+        <%# <%= link_to 'Unfollow', relationship_path(user.followers.find_by(follower: current_user)), method: :delete if user.followers.find_by(follower: current_user).present? %> %>
         <h2>Followers: <%= user.followers.count %></h2>
         <h2>Following: <%= user.following.count %></h2>
-      <% end %>
+      <%# <% end %> %>
 
 
         </div>
     </div>
   <% end %>-->
-</div>
 

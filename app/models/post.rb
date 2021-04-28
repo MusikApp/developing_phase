@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_one_attached :image
   has_one_attached :video
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   validate :acceptable_image
   validate :acceptable_video
 
