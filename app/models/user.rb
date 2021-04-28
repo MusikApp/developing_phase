@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :followers, foreign_key: "followed_id", class_name: "Relationship"
   has_many :posts
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
          
   has_one_attached :avatar  
   validate :acceptable_avatar 
