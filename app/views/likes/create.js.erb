@@ -1,0 +1,3 @@
+<% pre_like = @findpost.likes.find { |like| like.user_id == current_user.id} %>
+
+$("#like_<%= @findpost.id %>").html('<a data-remote="true" rel="nofollow" data-method="delete" href="/posts/<%= @findpost.id %>/likes/<%= pre_like %>"><p><i class="fas fa-heart"></i> Me gusta</p></a>')

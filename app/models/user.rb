@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifications, as: :recipient
 
          
   has_one_attached :avatar  

@@ -1,9 +1,9 @@
-<%= form_with(model: @post) do |form| %>
+<%= form_with url: posts_path, method: :post do |form| %>
     <div class="field">
         <%= form.text_area :content, :placeholder => "¿Qué hay de nuevo?" %>
     </div>
 
-    <div class="post-actions">
+    <div class="post-actions ">
         <div class="field">
             <label class="btn btn-file">
             <i class="fas fa-image"></i>

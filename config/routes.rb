@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   get 'profile/:id', to: 'profile#show', as: 'profile_user'
   post 'comments/:post_id', to: 'comments#create', as: 'new_comment'
   post 'comments/:post_id/:id', to: 'comments#reply', as: 'new_reply'
-
+  
 end

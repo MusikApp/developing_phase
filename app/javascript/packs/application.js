@@ -18,10 +18,28 @@ ActiveStorage.start()
 
 $(document).on('turbolinks:load', function() {
 
+    $(".comments").on("click", function(e) {
+        let comments = e.target.parentElement.parentElement.parentElement.lastElementChild;
+
+        $(comments).toggle();
+    })
+
+    $(".comment-stats").on("click", function(e) {
+        let comments = e.target.parentElement.parentElement.parentElement.lastElementChild;
+
+        $(comments).toggle();
+    })
+
+    $("h6").on("click", function(e) {
+        let reply = e.target.parentElement.lastElementChild;
+        
+        $(reply).toggle();
+    })
+
     $(".navbar-thumbnail").on("mouseover", function() {
         $(".menu").toggle();
         $(document).on("mouseup", function(e) {
-            var container = $(".menu");
+            const container = $(".menu");
         
             if (!container.is(e.target) && container.has(e.target).length === 0) 
             {
