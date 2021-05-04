@@ -7,21 +7,25 @@ class LikesController < ApplicationController
   end
 
   def create
-    if already_liked?
-      flash[:notice] = "You can't like more than once"
-    else
-    @findpost.likes.create(user_id: current_user.id)
-    redirect_to root_path
+    respond_to do |format|
+      if already_liked?
+        flash[:notice] = "You can't like more than once"
+      else
+        @findpost.likes.create(user_id: current_user.id)
+        format.js{}
+      end
     end
   end
 
   def destroy
-    if !(already_liked?)
-      flash[:notice] = "Cannot unlike"
-    else
-      @findlike.destroy
+    respond_to do |format|
+      if !(already_liked?)
+        flash[:notice] = "Cannot unlike"
+      else
+        @findlike.destroy
+        format.js{}
+      end
     end
-    redirect_to root_path
   end
 
   private

@@ -19,7 +19,7 @@
           </div>
           <div class="post-title">  
             <p> <%= link_to(post.user.username, profile_user_path(post.user.id)) %></p>
-            <p class="post-date"><%= I18n.l(post.created_at, format: '%d de %B de %Y') %></p>
+            <p class="post-date"><%= I18n.l(post.created_at, format: :long) %></p>
           </div>
         </div>
         <br>
@@ -29,48 +29,108 @@
         <br>
         <% if post.image.attached? %>
           <div class="image-wrapper">
-            <%= image_tag post.image_thumbnail %>
+            <%= image_tag post.image_thumbnail, class: "post_image" %>
           </div>
         <% end %>
         <% if post.video.attached? %>
-          <%= video_tag(url_for(post.video), :controls => "", :width => "650", :height => "500") %>
+          <%= video_tag(url_for(post.video), :controls => "", :class => "post_video") %>
         <% end %>
 
-      <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
-      <% if pre_like %>
-        <%= link_to post_like_path(post, pre_like), method: :delete do %>
-          <i class="fas fa-heart"></i>
-        <% end %>
-      <% else %>
-        <%= link_to post_likes_path(post), method: :post do %>
-          <i class="far fa-heart"></i>
-        <% end %>
-      <% end %>
-        <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Me gusta' : 'Me gustan'%></p>
+        <div class="post-stats">
+          <div class="like-stats">
+            <p><%= post.likes.count %> Me gusta</p>
+          </div>
+          <div class="comment-stats">
+            <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comentario' : 'Comentarios'%></p>
+          </div>
+        </div>
+        <hr>
 
-
-<!--Comment section-->
-      <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comentario' : 'Comentarios'%></p>
-          <%= form_with url: new_comment_path(post.id), method: :post do |f| %>
-            <%= f.text_field :content %>
-            <%= f.submit "Comentar" %>
-          <% end %>
-          <% post.comments.each do |comment| %>
-
-            <% if comment.reply_id == nil %>
-              <p><strong><%= comment.content %></strong></p>
-              <%= form_with url: new_reply_path(post.id, comment.id), method: :post do |f| %>
-                <%= f.text_field :content %>
-              <%= f.submit "Responder" %>
-            <% end %>
-          <% end %>
-            <% if comment.replies.any? %>
-              <% comment.replies.each do |reply| %>
-                <p><%= reply.content %> </p>
+      <div class="post-interactions">
+        <div class="likes">
+          <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+          <div class="like" id="like_<%= post.id %>">
+            <% if pre_like %>
+              <%= link_to post_like_path(post, pre_like), method: :delete, remote: true do %>
+                <p><i class="fas fa-heart"></i> Me gusta</p>
+              <% end %>
+            <% else %>
+              <%= link_to post_likes_path(post), method: :post, remote: true do %>
+                <p><i class="far fa-heart"></i> Me gusta</p>
               <% end %>
             <% end %>
-           
+          </div>
+          
+        </div>
+        <div class="comments">
+          <% pre_comment = post.comments.find { |comment| comment.user_id == current_user.id } %>
+          <% if pre_comment %>
+            <p><i class="fas fa-comment"></i> Comentar</p>
+          <% else %>
+            <p><i class="far fa-comment"></i> Comentar</p>
+          <% end %> 
+        </div>
+      </div>
+      <hr>
+
+<!--Comment section-->
+          <div class="comments-section">
+
+            <% post.comments.each do |comment| %>
+            <% if !comment.reply_id %>
+              <div class="comment-content">
+                <div class="content-head">
+                  <%= image_tag comment.user.avatar_thumbnail, class: "comment-content-thumbnail" %>
+                </div>
+                <div class="content-body">
+                  <p><%= link_to(comment.user.username, profile_user_path(comment.user.id)) %> <br> <%= comment.content %></p>
+                </div>
+              </div>
+              <div class="reply-action">
+                  <h6>Responder</h6>
+                  <div class="replying">
+                    <div class="replying-body">
+                      <div class="replying-head">
+                        <%= image_tag current_user.avatar_thumbnail, :class => "replying-thumbnail" %>
+                      </div>
+                      <div class="reply-form">
+                        <%= form_with url: new_reply_path(post.id, comment.id), method: :post do |f| %>
+                          <%= f.text_field :content, placeholder: "Responder" %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+
+            <% if comment.replies.any? %>
+              <% comment.replies.each do |reply| %>
+                <div class="reply-content">
+                  <div class="reply-head">
+                    <%= image_tag reply.user.avatar_thumbnail, class: "reply-content-thumbnail" %>
+                  </div>
+                  <div class="reply-body">
+                    <p><%= link_to(reply.user.username, profile_user_path(reply.user.id)) %> <br> <%= reply.content %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %> 
+
           <% end %>
+
+          <div class="comment-form">
+            <div class="comment-head">
+              <%= image_tag current_user.avatar_thumbnail, :class => "comment-thumbnail" %>
+            </div>
+            <div class="comment-body">
+              <%= form_with url: new_comment_path(post.id), method: :post do |f| %>
+                <%= f.text_field :content, placeholder: "Comentar" %>
+              <% end %>
+            </div>
+          </div>
+        
+          </div>
+          
         </div>
 
       </div>
@@ -78,23 +138,4 @@
     </div>
   <% end %>
 
-  <!--<% @users.each do |user| %>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title"><%= user.email %></h5>
-        
-      <%# <% if user == current_user %> %>
-        <h2>Followers: <%= user.followers.count %></h2>
-        <h2>Following: <%= user.following.count %></h2>
-      <%# <% else %> %>
-        <%# <%= link_to 'Follow', user_relationships_path(user), method: :post unless user.followers.find_by(follower: current_user).present? %> %>
-        <%# <%= link_to 'Unfollow', relationship_path(user.followers.find_by(follower: current_user)), method: :delete if user.followers.find_by(follower: current_user).present? %> %>
-        <h2>Followers: <%= user.followers.count %></h2>
-        <h2>Following: <%= user.following.count %></h2>
-      <%# <% end %> %>
-
-
-        </div>
-    </div>
-  <% end %>-->
-
+  <%= render 'partials/foot' %>

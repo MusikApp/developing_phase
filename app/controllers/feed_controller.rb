@@ -3,9 +3,6 @@ class FeedController < ApplicationController
         @users = User.all
         @posts = Post.all
         follower_ids = current_user.followers.map(&:follower_id)
-    
-        # @post = Post.find(params[:post_id])
-        # @comment = @post.comments.new 
 
         @comments = Comment.all
         @comment = Comment.new

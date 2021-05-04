@@ -17,12 +17,72 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+/* Focus */
 $(document).on('turbolinks:load', function() {
+    /* On click events */
+    $("nav li").on("mouseover", function(){
+        $("body").find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    $("footer li").on("mouseover", function(){
+        $("body").find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    $(".comments").on("click", function(e) {
+        let comments = e.target.parentElement.parentElement.parentElement.lastElementChild;
+
+        $(comments).toggle();
+    })
+
+    $(".comment-stats").on("click", function(e) {
+        let comments = e.target.parentElement.parentElement.parentElement.lastElementChild;
+
+        $(comments).toggle();
+    })
+
+    $("h6").on("click", function(e) {
+        let reply = e.target.parentElement.lastElementChild;
+        
+        $(reply).toggle();
+    })
+
+
+    
+
+
+    /* back2top */
+    $(window).scroll(function() {
+        var height = $(window).scrollTop();
+        if (height > 100) {
+            $('#back2Top').fadeIn();
+        } else {
+            $('#back2Top').fadeOut();
+        }
+    });
+    $(document).ready(function() {
+        $("#back2Top").click(function(event) {
+            event.preventDefault();
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            return false;
+        });
+    });
+
+    /* active navbar item */
+    $("#home").on("click", function() {
+
+    })
+    
+    /* footer search bar */
+    $(".foot-search").on("click", function() {
+        $(".footer-search-section").toggle();
+    })
 
     $(".navbar-thumbnail").on("mouseover", function() {
-        $(".menu").toggle();
+        $(".menu").show();
         $(document).on("mouseup", function(e) {
-            var container = $(".menu");
+            const container = $(".menu");
         
             if (!container.is(e.target) && container.has(e.target).length === 0) 
             {
@@ -31,6 +91,21 @@ $(document).on('turbolinks:load', function() {
         })
         $(".menu-list").on("click", function() {
             $(".menu").hide();
+        })
+    })
+
+    $(".footer-thumbnail").on("mouseover", function() {
+        $(".mobile-menu").toggle();
+        $(document).on("mouseup", function(e) {
+            const container = $(".mobile-menu");
+        
+            if (!container.is(e.target) && container.has(e.target).length === 0) 
+            {
+                container.hide();
+            }
+        })
+        $(".mobile-menu-list").on("click", function() {
+            $(".mobile-menu").hide();
         })
     })
 })

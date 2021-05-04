@@ -18,6 +18,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     width: 100%;
     padding: 0;
@@ -34,10 +38,19 @@ body {
     z-index: 3;
 }
 
-.navbar-thumbnail {
+.nav {
+    display: none;
+}
+
+.navbar-thumbnail,
+.footer-thumbnail {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    cursor: pointer;
+}
+
+.foot-menu{
     cursor: pointer;
 }
 
@@ -45,12 +58,17 @@ body {
     margin-left: 15px;
 }
 
+.footer {
+    display: none;
+}
+
 .menu {
     position: absolute;
     right: 180px;
     top: 50px;
     min-width: 200px;
-    min-height: 200px;
+    height: 150px;
+    min-height: 150px;
     background-color: rgb(242, 242, 242);
     border-radius: 10px;
     display: none;
@@ -83,18 +101,23 @@ body {
 /* fontawesome icons <i> */
 
 .fas {
-    color:  rgb(96, 114, 131);
+    color: rgb(151, 169, 188);
     font-size: 30px;
+}
+
+.fas:hover {
+    color:  rgb(96, 114, 131);
 }
 
 /* Profile Styles */
 .profile-thumbnail {
     border-radius: 50%;
-    width: 150px;
+    width: 15%;
 }
 
 .profile {
     width: 100%;
+    min-height: 150px;
     padding: 40px 15%;
     margin-bottom: 40px;
 }
@@ -105,15 +128,9 @@ body {
     padding: 0;
 }
 
-.profile-text-wrapper {
-    width: 25%;
-    margin-right: 15%;
-    float: right;
-    padding: 0;
-}
-
 .profile-post-wrapper {
-    width: 100%;
+    width: 50%;
+    margin: 0 auto;
     border: 1px solid rgb(242, 242, 242);
     margin-bottom: 40px;
 }
@@ -149,6 +166,11 @@ body {
     margin-bottom: 30px;
 }
 
+.profile_image, 
+.profile_video {
+    width: 100%;
+}
+
 .avatar-section {
     width: 40%;
     display: inline;
@@ -175,7 +197,7 @@ body {
 }
 
 .details-section {
-    width: 60%;
+    width: 67%;
     float: right;
 }
 
@@ -266,7 +288,7 @@ body {
     border: 1px solid rgb(242, 242, 242);
     position: fixed;
     right: 0;
-    margin-top: 130px;
+    margin-top: 128px;
     background-color: rgb(242, 242, 242);
 }
 
@@ -281,11 +303,18 @@ body {
 }
 
 .card {
+    max-width: 682px;
+    min-width: 682px;
     width: 47.5%;
     margin-left: 10%;
     border: 1px solid rgb(242, 242, 242);
     background-color: #f8f8f8;
     margin-bottom: 15px;
+}
+
+.post_image,
+.post_video {
+    width: 100%;
 }
 
 .card a {
@@ -298,17 +327,26 @@ body {
     width: 100%;
 }
 
+.fa-heart,
+.fa-comment {
+    font-size: 18px;
+    color: rgb(96, 114, 131);
+}
+
 .head {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .post-avatar {
     width: 10%;
+    max-width: 10%;
     display: inline;
-    margin-right: 2%;
+    margin-right: 1%;
 }
 
 .post-title {
+    margin-left: 1%;
     width: 90%;
     float: right;
 }
@@ -328,6 +366,200 @@ body {
 
 .post-content {
     margin-bottom: 1px;
+}
+
+.post-stats {
+    margin-top: 5px;
+    width: 100%;
+    display: flex;
+}
+
+.like-stats {
+    width: 50%;
+    margin-left: 2%;
+}
+
+.comment-stats {
+    width: 50%;
+    text-align: end;
+    margin-right: 2%;
+    cursor: pointer;
+}
+
+.post-interactions {
+    display: flex;
+    width: 100%;
+    padding-bottom: 0;
+    margin-top: 15px;
+}
+
+hr { 
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.likes,
+.comments {
+    width: 50%;
+    text-align: center;
+    
+}
+
+.likes p, 
+.comments p {
+    font-weight: 700;
+}
+
+.likes a {
+    text-decoration: none;
+    color: rgb(96, 114, 131);
+    font-size: 1rem;
+}
+
+.comments {
+    color: rgb(96, 114, 131);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.reply-content {
+    width: 80%;
+    margin: 0 10%;
+    display: flex;
+}
+
+.reply-content a {
+    font-size: 1rem;
+}
+
+.reply-head {
+    width: 8%;
+    min-width: 8%;
+}
+
+.reply-content-thumbnail {
+    border-radius: 50%;
+    min-width: 70%;
+    max-width: 70%;
+}
+
+.reply-body p {
+    display: inline-block;
+    border-radius: 25px;
+    padding: 10px 15px;
+    background-color: rgb(242, 242, 242);
+}
+
+.comment-content {
+   width: 90%;
+   margin: 0 5%;
+   display: flex;
+}
+
+.comment-content a {
+    font-size: 1rem;
+}
+
+.content-head {
+    min-width: 8%;
+    width: 8%;
+}
+
+.comment-content-thumbnail {
+    border-radius: 50%;
+    min-width: 70%;
+    max-width: 70%;
+}
+
+.content-body p {
+    display: inline-block;
+    border-radius: 25px;
+    padding: 10px 15px;
+    background-color: rgb(242, 242, 242);
+    margin-bottom: 0;
+}
+
+.reply-action {
+    width: 90%;
+    margin: 0 5%;
+}
+
+.reply-action h6 {
+    font-size: 0.8rem;
+    font-weight: normal;
+    margin-left: 11%;
+    cursor: pointer;
+}
+
+.replying {
+    display: none;
+    margin-bottom: 10px;
+}
+
+.replying-body {
+    width: 80%;
+    margin: 0 10%;
+    display: grid;
+    grid-template-columns: 8% 92%; 
+}
+
+.replying-head {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 100%;
+}
+
+.replying-thumbnail {
+    border-radius: 50%;
+    width: 70%;
+    margin-left: auto;
+}
+
+.reply-form {
+    width: 100%;
+}
+
+.reply-form input {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+}
+
+.comment-form {
+    width: 90%;
+    margin: 0 5%;
+    display: grid;
+    grid-template-columns: 8% 92%;
+}
+
+.comments-section {
+    display: none;
+}
+
+.comment-head {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 100%;
+}
+
+.comment-body {
+    width: 100%;
+}
+
+.comment-thumbnail {
+    border-radius: 50%;
+    width: 70%;
+    margin-left: auto;
+}
+
+.comment-form input {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 40px;
+    border: none;
+    outline: none;
 }
 
 .post-actions {
@@ -428,16 +660,22 @@ body {
     margin: 50px 0;
 }
 
+/* focus */
+.active i {
+    color: rgb(96, 114, 131);
+}
+
 /* Update Profile Page Styles */ 
 
 .fields {
     display: grid;
     width: 90%;
     padding-top: 25px;
-    margin-top: 30px;
+    margin-top: 60px;
+    margin-bottom: 60px;
     margin-left: 5%;
     grid-template-columns: 25% 30% 30%;
-    grid-template-rows: 100px 150px 100px 100px 100px;
+    grid-template-rows: 140px 150px 100px 100px 100px;
     gap: 15px 10px;
     background-color: rgb(242, 242, 242);
 }
@@ -456,6 +694,12 @@ body {
     width: 90%;
     margin-left: 5%;
     height: 120px;
+}
+
+#user_avatar {
+    text-align: center;
+    margin: 0;
+    width: 200px;
 }
 
 .update-avatar {
@@ -480,6 +724,11 @@ body {
     width: 100%;
 }
 
+.username,
+.email {
+    margin-top: 25px;
+}
+
 .description-field label {
     margin-left: 5%;
 }
@@ -487,6 +736,30 @@ body {
 .password-field {
     grid-column-start: 2;
     grid-column-end: 3;
+}
+
+.mobile-name,
+.mobile-description,
+.mobile-password,
+.add_span,
+.mobile-carousel,
+.mobile-menu {
+    display: none;
+}
+
+.cancel-account {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.cancel-account a {
+    outline: none;
+    color: rgb(96, 114, 131);
+    text-decoration: none;
 }
 
 .min-chars {
@@ -537,4 +810,417 @@ body {
 
 .invisible-input {
     margin-right: 10%;
+}
+
+#back2Top {
+    display: none;
+}
+
+/* Responsiveness */
+
+@media only screen and (max-width: 1450px) {
+    .search-section, 
+    .post-new {
+        margin-right: 7.5%;
+    }
+
+    .card {
+        margin-left: 7.5%;
+    }
+}
+
+  @media only screen and (max-width: 1250px) {
+    .profile-post-wrapper {
+        width: 70%;
+    }
+
+    .search-section, 
+    .post-new {
+        position: relative;
+        max-width: 682px;
+        min-width: 682px;
+        width: 47.5%;
+        margin: 0 auto;
+        margin-bottom: 15px;   
+    }
+
+    .search-section {
+        height: 112px;
+    }
+
+    .card {
+        margin: 0 auto;
+        margin-bottom: 15px;
+    }
+
+    .fields {
+        display: grid;
+        width: 90%;
+        padding-top: 25px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        margin-left: 5%;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 140px 100px 150px 50px 50px 50px;
+        gap: 15px 10px;
+        background-color: rgb(242, 242, 242);
+    }
+
+    .description-field,
+    .desktop-name,
+    .details,
+    .password-field,
+    .password-confirmation-field,
+    .confirm-update-field {
+        display: none;
+    }
+
+    .mobile-description {
+        display: block;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+
+    .mobile-description textarea {
+        width: 80%;
+        margin-left: 10%;
+        height: 210px;
+    }
+
+    .mobile-description label {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .mobile-name {
+        display: block;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    .mobile-password {
+        display: block;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    } 
+    
+    .button-actions {
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+    }
+
+    .button-actions input {
+        margin-left: 0;
+        width: 50%;
+    }
+
+    .back-field {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        padding-top: 0;
+    }
+
+    .cancel-account {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        padding-top: 0;
+    }
+
+    #back2Top {
+        width: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 999;
+        display: none;
+        cursor: pointer;
+        -moz-transform: rotate(270deg);
+        -webkit-transform: rotate(270deg);
+        -o-transform: rotate(270deg);
+        -ms-transform: rotate(270deg);
+        transform: rotate(270deg);
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: rgb(242, 242, 242);
+        color: rgb(151, 169, 188);
+        text-align: center;
+        font-size: 30px;
+        text-decoration: none;
+        z-index: 2;
+    }
+    #back2Top:hover {
+        color: rgb(96, 114, 131);
+    }
+
+}  
+
+@media only screen and (max-width: 995px) {
+    .profile-post-wrapper {
+        width: 80%;
+    }
+
+    .avatar-section {
+        padding-left: 4%;
+    }
+
+    .navbar-nav {
+        display: none;
+    }
+
+    .nav {
+        display: flex;
+    }
+
+    .navbar {
+        padding: 10px 10%;
+    }
+
+    .footer {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        z-index: 3;
+        background-color: rgb(242, 242, 242);
+        width: 100%;
+        padding: 10px 0;
+        margin-bottom: 0;
+    }
+
+    .footer-search-section {
+        display: none;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+
+    .footer input {
+        width: 80%;
+        margin: 0 10%;
+        border-radius: 60px;
+        border: none;
+        padding: 5px 10px;
+        outline: none;
+    }
+
+    .foot-search {
+        cursor: pointer;
+    }
+
+    .footer ul {
+        display: flex;
+        margin-bottom: 0;
+        justify-content: space-around;
+        padding-left: 0;
+    }
+
+    .footer li {
+        list-style-type: none;
+    }
+
+    .mobile-menu {
+        position: absolute;
+        right: 0px;
+        bottom: 52px;
+        min-width: 200px;
+        height: 100px;
+        min-height: 100px;
+        background-color: rgb(242, 242, 242);
+        border-radius: 10px;
+        z-index: 3;
+    }
+
+    .mobile-menu ul {
+        display: block;
+    }
+    
+    .mobile-menu li {
+        list-style-type: none;
+        margin-bottom: 10px;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+    
+    .mobile-menu li:hover {
+        background-color:rgb(193, 193, 193);
+        border-radius: 5px;
+    }
+    
+    .mobile-menu a {
+        outline: none;
+        text-decoration: none;
+        color: rgb(110, 127, 145);
+        font-weight: bold;
+    }
+    
+    .mobile-menu-list {
+        
+        padding: 10px 10px 20px 0;
+        margin-left: 10px;
+    }
+
+    body:last-child {
+        margin-bottom: 85px;
+    }
+
+    .search-section {
+        display: none;
+    }
+
+    .post-new {
+        height: 180px;
+    }
+
+    .post-new textarea {
+        height: 105px;
+    }
+
+    #back2Top {
+        bottom: 60px;
+        right: 10px;
+    }
+
+    .desktop-carousel {
+        display: none;
+    }
+
+    .mobile-carousel {
+        display: block;
+    }
+
+    .login-form {
+        display: block;
+        width: 75%;
+        margin: 0 12.5%;
+        margin-top: 50px;
+    }
+
+    .profile {
+        padding: 40px 5%;
+    }
+
+    .details-section {
+        margin-right: 4%;
+    }
+
+    .details-section ul {
+        text-align: center;
+        font-size: 0.7rem;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .profile-post-wrapper {
+        width: 100%;
+    }
+
+    .profile {
+        padding: 40px 0;
+    }
+
+    .card {
+        width: 100%;
+        min-width: 600px;
+        max-width: 700px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .post-new {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        min-width: 600px;
+        max-width: 700px;
+        height: 125px;
+    }
+
+    .feed {
+        padding-top: 15px;
+    }
+
+    .post-new textarea {
+        height: 50px;
+    }
+
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .post_image,
+    .post_video {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .post-title {
+        width: 85%;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .post-new, 
+    .card {
+        min-width: 500px;
+        max-width: 600px;
+    }
+
+    .post_image,
+    .post_video {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .post-new, 
+    .card {
+        min-width: 400px;
+        max-width: 500px;
+    }
+
+    .post_image,
+    .post_video {
+        width: 100%;
+        height: 300px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .post_image,
+    .post_video {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .post-thumbnail {
+        border-radius: 50%;
+        width: 40px;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    .post_image,
+    .post_video {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }

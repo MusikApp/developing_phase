@@ -11,9 +11,9 @@
             <%= link_to 'Editar Perfil', edit_user_registration_path, class: "edit-button" %>
         </div>
         <ul class="d-inline-flex">
-            <li><%= current_user.posts.count %><strong> Publicaciones</strong></li>
-            <li><%= current_user.followers.count %><strong> Seguidores</strong></li>
-            <li><%= current_user.following.count %><strong> Seguidos</strong></li>
+            <li><strong><%= current_user.posts.count %></strong> Publicaciones</li>
+            <li><strong><%= current_user.followers.count %></strong> Seguidores</li>
+            <li><strong><%= current_user.following.count %></strong> Seguidos</li>
         </ul>
         <br>
         <p class="description-text">
@@ -26,7 +26,6 @@
     <% if @my_posts.count >= 1 %>
         <div class="profile-text-wrapper">
             <% @my_posts.each do |post| %>
-                <% if post.image.attached? == false %>
                     <div class="profile-post-wrapper">
                         <div class="head">
                             <div class="profile-post-avatar">
@@ -41,22 +40,16 @@
                         <div class="profile-post-content">
                             <%= post.content %>
                         </div>
-                    </div>
-                <% end %>
-            <% end %>
-        </div>
-
-        <div class="profile-media-wrapper">
-            <% @my_posts.each do |post| %>
-                <div class="profile-images">
+                        <div class="profile-images">
                     <% if post.image.attached? %>
-                        <%= image_tag post.image_thumbnail %>
+                        <%= image_tag post.image_thumbnail, :class => "profile_image" %>
                     <% end %>
                 </div>
                 <div class="profile-videos">
                     <% if post.video.attached? %>
-                        <%= video_tag(url_for(post.video), :controls => "", :width => "500", :height => "400") %>
+                        <%= video_tag(url_for(post.video), :controls => "", :class => "profile_video") %>
                     <% end %>
+                </div>
                 </div>
             <% end %>
         </div>
@@ -65,5 +58,6 @@
     <% end %>    
 </div>
 
+<%= render 'partials/foot_variant' %>
 
 
