@@ -29,11 +29,11 @@
         <br>
         <% if post.image.attached? %>
           <div class="image-wrapper">
-            <%= image_tag post.image_thumbnail %>
+            <%= image_tag post.image_thumbnail, class: "post_image" %>
           </div>
         <% end %>
         <% if post.video.attached? %>
-          <%= video_tag(url_for(post.video), :controls => "", :width => "650", :height => "500") %>
+          <%= video_tag(url_for(post.video), :controls => "", :class => "post_video") %>
         <% end %>
 
         <div class="post-stats">

@@ -42,18 +42,36 @@
 
   </div>
 
-   <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="<%= asset_path('carousel1.jpg') %>" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="<%= asset_path('carousel2.jpg') %>" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="<%= asset_path('carousel3.jpg') %>" class="d-block w-100" alt="...">
+    <div class="desktop-carousel">
+      <div id="desktop-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="<%= asset_path('carousel1.jpg') %>" class="w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="<%= asset_path('carousel2.jpg') %>" class="w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="<%= asset_path('carousel3.jpg') %>" class="w-100" alt="...">
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <div class="mobile-carousel">
+      <div id="mobile-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="<%= asset_path('carousel-mobile1.jpg') %>" width="700px" height="900px" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="<%= asset_path('carousel-mobile2.jpg') %>" width="700px" height="900px" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="<%= asset_path('carousel-mobile3.jpg') %>" width="700px" height="900px" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
 
 </div>

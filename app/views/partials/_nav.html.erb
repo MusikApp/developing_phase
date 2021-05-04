@@ -6,17 +6,17 @@
         <ul class="nav">
           <li class="nav-item">
             <%= link_to() do %>
-              <i class="fas fa-bell"></i>
+              <i id="notifications" class="fas fa-bell"></i>
             <% end %>
           </li>
           <li class="nav-item">
             <%= link_to() do %>
-              <i class="fas fa-comments"></i>
+              <i id="messages" class="fas fa-comments"></i>
             <% end %>
           </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <li class="nav-item active">
             <%= link_to(root_path) do %>
               <i class="fas fa-home"></i>
             <% end  %>
@@ -37,9 +37,11 @@
             <% end %>
           </li>
           <% if current_user %>
-          <li class="nav-item">
-            <%= image_tag current_user.avatar_thumbnail, :class => "navbar-thumbnail", :id => "navbar-thumbnail" %> 
-          </li>
+            <%= link_to profile_path do %>
+            <li class="nav-item">
+              <%= image_tag current_user.avatar_thumbnail, :class => "navbar-thumbnail", :id => "navbar-thumbnail" %> 
+            </li>
+            <% end %>
           <% else %>
             <li class="nav-item">
               <%= link_to(new_user_session_path) do %>
@@ -47,15 +49,14 @@
               <% end %>
             </li>
           <% end %>
-          <div class="menu" id="menu">
-            <ul class="menu-list">
-              <li><%= link_to 'Perfil', profile_path %></li>
-              <li>Otro Menos</li>
-              <li><%= link_to 'Editar Perfil', edit_user_registration_path %></li>
-              <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </div>
         </ul>
+        <div class="menu" id="menu">
+          <ul class="menu-list">
+            <li><%= link_to 'Perfil', profile_path %></li>
+            <li><%= link_to 'Editar Perfil', edit_user_registration_path %></li>
+            <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </div>
       </div>
     </nav>
     <p class="alert"><%= alert %></p>

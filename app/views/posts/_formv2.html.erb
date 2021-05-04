@@ -1,6 +1,6 @@
 <%= form_with url: posts_path, method: :post do |form| %>
     <div class="field">
-        <%= form.text_area :content, :placeholder => "¿Qué hay de nuevo?" %>
+        <%= form.text_area :content, :placeholder => "¿Qué hay de nuevo?", :id => "post-area" %>
     </div>
 
     <div class="post-actions ">

@@ -1,9 +1,19 @@
+<a id="back2Top" title="Back_to_top" href="#">&#10148;</a>
+
 <footer class="footer">
+<div class="footer-search-section">
+  <form class="bar">
+    <input placeholder="Publicaciones, tendencias." name="query" <%= @q %> >
+  </form>
+</div>
 <ul>
-    <li>
+    <li class="active">
       <%= link_to(root_path) do %>
         <i class="fas fa-home"></i>
       <% end  %>
+    </li>
+    <li class="foot-search">
+        <i class="fas fa-search"></i>
     </li>
     <li>
       <%= link_to() do %>
@@ -11,8 +21,8 @@
       <% end %>
     </li>
     <% if current_user %>
-        <li>
-            <%= image_tag current_user.avatar_thumbnail, :class => "navbar-thumbnail", :id => "navbar-thumbnail" %> 
+        <li class="foot-menu">
+            <%= image_tag current_user.avatar_thumbnail, :class => "footer-thumbnail", :id => "footer-thumbnail" %> 
         </li>
     <% else %>
         <li>
@@ -21,4 +31,11 @@
             <% end %>
         </li>
     <% end %>
+  </ul>  
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-menu-list">
+      <li><%= link_to 'Perfil', profile_path %></li>
+      <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </div>
 </footer>
