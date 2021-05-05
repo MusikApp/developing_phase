@@ -108,4 +108,10 @@ $(document).on('turbolinks:load', function() {
             $(".mobile-menu").hide();
         })
     })
+
+    /* chatroom 
+
+    $(".message").on("click", function(){
+        $(".author").toggle()
+    })*/
 })

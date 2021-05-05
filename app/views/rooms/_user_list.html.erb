@@ -1,0 +1,14 @@
+<% @users.each do |user| %>
+  <ul>
+    <li>
+      <div class="comment-form">
+        <div class="comment-head">
+          <%= image_tag user.avatar_thumbnail, :class => "comment-thumbnail" %>
+        </div>
+        <div class="comment-body">
+          <%= link_to user.username, rooms_path(user_id: user), method: :post %>
+        </div>
+      </div>
+    </li>
+  </ul>
+<% end %>

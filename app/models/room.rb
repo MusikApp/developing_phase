@@ -7,10 +7,6 @@ class Room < ApplicationRecord
 
   # validates :sender_id, uniqueness: { scope: :recipient_id }
 
-  def opposed_user(user)
-    user == recipient ? sender : recipient
-  end
-
   scope :between, -> (sender_id, recipient_id) do 
     where(sender_id: sender_id, recipient_id: recipient_id).or(
       where(sender_id: recipient_id, recipient_id: sender_id)

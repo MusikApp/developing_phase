@@ -6,6 +6,20 @@ class RoomsController < ApplicationController
     session[:rooms] ||= []
     @users = User.all.where.not(id: current_user)
     @rooms = Room.includes(:recipient, :messages).find(session[:rooms])
+    # @suggestions = User.all.where()
+
+    #search users
+    @q = params[:query]
+      
+    if @q
+        if User.where("name ~* ?", @q).count > 0
+            @users = User.where("name ~* ?", @q).page(params[:page])
+        elsif User.where("username ~* ?", @q).count > 0
+          @users = User.where("username ~* ?", @q).page(params[:page])
+        else
+            @users = User.all
+        end
+    end 
 
   end
 
@@ -15,8 +29,12 @@ class RoomsController < ApplicationController
     @users = User.all.where.not(id: current_user)
     @rooms = Room.includes(:recipient, :messages).find(session[:rooms])
 
+    #search users
+    @q = params[:query]
+
     render 'index'
   end
+
 
   # GET /rooms/new
   def new
@@ -61,7 +79,8 @@ class RoomsController < ApplicationController
 
   # DELETE /rooms/1 or /rooms/1.json
   def destroy
-    @room.destroy
+    # @room.destroy
+    session[:rooms].delete(@room.id)
     respond_to do |format|
       format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
       format.json { head :no_content }

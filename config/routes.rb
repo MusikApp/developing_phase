@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :messages
-  resources :rooms
+  resources :rooms do
+    resources :messages
+  end
+  
   resources :posts do
     resources :likes, only: %i[create destroy]
   end

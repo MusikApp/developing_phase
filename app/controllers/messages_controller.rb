@@ -21,18 +21,23 @@ class MessagesController < ApplicationController
 
   # POST /messages or /messages.json
   def create
-    @message = Message.new(message_params)
-    @message.user = current_user
-    @message.save
+    @room = Room.find(params[:id])
+
+    # @message = Message.new(message_params)
+    # @message.user = current_user
+    # @message.save
+    @room = Room.includes(:recipient).find(params[:room_id])
+    @message = @room.messages.create(message_params)
 
     respond_to do |format|
-      if @message.save
-        format.html { redirect_to request.referrer, notice: "Message was successfully created." }
-        format.json { render :show, status: :created, location: @message }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to request.referrer, notice: "Message was successfully created." }
+      # if @message.save
+      #   format.html { redirect_to request.referrer, notice: "Message was successfully created." }
+      #   format.json { render :show, status: :created, location: @message }
+      # else
+      #   format.html { render :new, status: :unprocessable_entity }
+      #   format.json { render json: @message.errors, status: :unprocessable_entity }
+      # end
     end
   end
 
