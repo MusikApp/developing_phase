@@ -8,6 +8,17 @@
   </div>
   <div class="post-new">
     <%= render "posts/formv2" %>
+    <%= render "demos/formv2" %>
+  </div>
+
+  <div class="demo">
+    <div class="switch-container">
+      <label class="leyend">¿Quieres publicar un demo?</label>
+      <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+    </div>
   </div>
 
   <% @posts.each do |post| %>
@@ -37,10 +48,10 @@
         <% end %>
 
         <div class="post-stats">
-          <div class="like-stats">
+          <div class="like-stats" id="like_stats_<%= post.id %>">
             <p><%= post.likes.count %> Me gusta</p>
           </div>
-          <div class="comment-stats">
+          <div class="comment-stats" id="comment_stats_<%= post.id %>">
             <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comentario' : 'Comentarios'%></p>
           </div>
         </div>
@@ -51,7 +62,7 @@
           <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
           <div class="like" id="like_<%= post.id %>">
             <% if pre_like %>
-              <%= link_to post_like_path(post, pre_like), method: :delete, remote: true do %>
+              <%= link_to post_like_path(post, pre_like.id), method: :delete, remote: true do %>
                 <p><i class="fas fa-heart"></i> Me gusta</p>
               <% end %>
             <% else %>
@@ -137,5 +148,4 @@
 
     </div>
   <% end %>
-
-  <%= render 'partials/foot' %>
+<%= render 'partials/foot' %>

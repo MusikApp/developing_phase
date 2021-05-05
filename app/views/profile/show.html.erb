@@ -5,10 +5,23 @@
     </div>
 
     <div class="details-section">
-        <h2><%= @user.username %></h2>
+        <div class="name">
+            <h2><%= @user.username %></h2>
+            <div id="buttons">
+                <% if @user.id === current_user.id %>
+                    <%= link_to 'Editar Perfil', edit_user_registration_path, class: "edit-button" %>
+                <% else %>
+                    <% if !current_user.following.map(&:followed_id).include?(@user.id.to_i) %>
+                        <%= link_to 'Seguir', follow_path, method: "post", remote: "true", class: "edit-button" %>
+                    <% else %>
+                        <%= link_to 'Dejar de Seguir', unfollow_path, method: "delete", remote: "true", class: "edit-button" %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
         <ul class="d-inline-flex">
             <li><strong><%= @user.posts.count %> Publicaciones</strong></li>
-            <li><strong><%= @user.followers.count %></strong> Seguidores</li>
+            <li id="follow-stats"><strong><%= @user.followers.count %></strong> Seguidores</li>
             <li><strong><%= @user.following.count %></strong> Seguidos</li>
         </ul>
         <br>
@@ -16,6 +29,18 @@
             <%= @user.description %>
         </p>
     </div>
+</div>
+
+<div id="edit-mobile" class="edit-mobile">
+    <% if @user.id === current_user.id %>
+        <%= link_to 'Editar Perfil', edit_user_registration_path, class: "edit-button-mobile" %>
+    <% else %>
+        <% if !current_user.following.map(&:followed_id).include?(@user.id.to_i) %>
+            <%= link_to 'Seguir', follow_path, method: "post", remote: "true", class: "edit-button-mobile" %>
+        <% else %>
+            <%= link_to 'Dejar de Seguir', unfollow_path, method: "delete", remote: "true", class: "edit-button-mobile" %>
+        <% end %>
+    <% end %>
 </div>
 
 <div class="posts">
@@ -46,6 +71,106 @@
                         <%= video_tag(url_for(post.video), :controls => "", :class => "profile_video") %>
                     <% end %>
                 </div>
+<div class="post-stats">
+          <div class="like-stats" id="like_stats_<%= post.id %>">
+            <p><%= post.likes.count %> Me gusta</p>
+          </div>
+          <div class="comment-stats" id="comment_stats_<%= post.id %>">
+            <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comentario' : 'Comentarios'%></p>
+          </div>
+        </div>
+        <hr>
+
+      <div class="post-interactions">
+        <div class="likes">
+          <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+          <div class="like" id="like_<%= post.id %>">
+            <% if pre_like %>
+              <%= link_to post_like_path(post, pre_like.id), method: :delete, remote: true do %>
+                <p><i class="fas fa-heart"></i> Me gusta</p>
+              <% end %>
+            <% else %>
+              <%= link_to post_likes_path(post), method: :post, remote: true do %>
+                <p><i class="far fa-heart"></i> Me gusta</p>
+              <% end %>
+            <% end %>
+          </div>
+          
+        </div>
+        <div class="comments">
+          <% pre_comment = post.comments.find { |comment| comment.user_id == current_user.id } %>
+          <% if pre_comment %>
+            <p><i class="fas fa-comment"></i> Comentar</p>
+          <% else %>
+            <p><i class="far fa-comment"></i> Comentar</p>
+          <% end %> 
+        </div>
+      </div>
+      <hr>
+
+<!--Comment section-->
+          <div class="comments-section">
+
+            <% post.comments.each do |comment| %>
+            <% if !comment.reply_id %>
+              <div class="comment-content">
+                <div class="content-head">
+                  <%= image_tag comment.user.avatar_thumbnail, class: "comment-content-thumbnail" %>
+                </div>
+                <div class="content-body">
+                  <p><%= link_to(comment.user.username, profile_user_path(comment.user.id)) %> <br> <%= comment.content %></p>
+                </div>
+              </div>
+              <div class="reply-action">
+                  <h6>Responder</h6>
+                  <div class="replying">
+                    <div class="replying-body">
+                      <div class="replying-head">
+                        <%= image_tag @user.avatar_thumbnail, :class => "replying-thumbnail" %>
+                      </div>
+                      <div class="reply-form">
+                        <%= form_with url: new_reply_path(post.id, comment.id), method: :post do |f| %>
+                          <%= f.text_field :content, placeholder: "Responder" %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+
+            <% if comment.replies.any? %>
+              <% comment.replies.each do |reply| %>
+                <div class="reply-content">
+                  <div class="reply-head">
+                    <%= image_tag reply.user.avatar_thumbnail, class: "reply-content-thumbnail" %>
+                  </div>
+                  <div class="reply-body">
+                    <p><%= link_to(reply.user.username, profile_user_path(reply.user.id)) %> <br> <%= reply.content %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %> 
+
+          <% end %>
+
+          <div class="comment-form">
+            <div class="comment-head">
+              <%= image_tag @user.avatar_thumbnail, :class => "comment-thumbnail" %>
+            </div>
+            <div class="comment-body">
+              <%= form_with url: new_comment_path(post.id), method: :post do |f| %>
+                <%= f.text_field :content, placeholder: "Comentar" %>
+              <% end %>
+            </div>
+          </div>
+        
+          </div>
+          
+        </div>
+
+      </div>
+
+    </div>
                 </div>
             <% end %>
         </div>
@@ -54,4 +179,4 @@
     <% end %> 
 </div>
 
-
+<%= render 'partials/foot_variant' %>

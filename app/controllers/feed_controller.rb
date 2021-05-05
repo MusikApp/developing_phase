@@ -1,7 +1,7 @@
 class FeedController < ApplicationController
     def index
         @users = User.all
-        @posts = Post.all
+        @posts = Post.all.reverse
         follower_ids = current_user.followers.map(&:follower_id)
 
         @comments = Comment.all
@@ -11,12 +11,15 @@ class FeedController < ApplicationController
     
         if @q
             if Post.where("content ~* ?", @q).count > 0
-                @posts = Post.where("content ~* ?", @q).page(params[:page])
-            elsif Post.where("user.username ~* ?", @q)
-                @posts = Post.all.joins(:user).where("username ~* ?", @q).page(params[:page])
+                @posts = Post.where("content ~* ?", @q).page(params[:page]).reverse
+            elsif User.where("username ~* ?", @q).count > 0
+                @posts = User.where("username ~* ?", @q).map{|user| user.posts}.flatten
+            elsif Comment.all.where("content ~* ?", @q).count > 0
+                @posts = Comment.all.where("content ~* ?", @q).map{|comment| comment.post}
             else
                 @posts = Post.all
             end
+
         end
     end
 end

@@ -23,7 +23,7 @@ class Post < ApplicationRecord
     return unless image.attached?
 
     unless image.byte_size <= 11.megabyte
-      errors.add(:file, "is too big")
+      errors.add(:image, "is too big")
     end
 
     acceptable_types = ["image/jpg", "image/jpeg", "image/gif", "image/png"]
