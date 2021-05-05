@@ -1,0 +1,11 @@
+<%= form_for [room, room.messages.new] do |form| %>
+  
+  <%#= form.hidden_field :room_id, value: room.id %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div class="input-group" id="message-form">
+    <%= form.text_field :content, placeholder: "Escribe tu mensaje aquí...", class: 'form-control' %>
+    <%= form.submit "Enviar", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

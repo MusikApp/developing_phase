@@ -1,0 +1,195 @@
+body {
+  overflow-y: hidden;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+}
+
+.chat-room {
+  height: 100vh;
+  border-right: 1px solid #eeeeee;
+
+
+  #messages {
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 200px;
+    padding-top: 100px;
+    padding-right: 25px;
+    padding-left: 15px;
+  }
+
+
+  .message {
+    min-height: 59px;
+    .content-container {
+      display: inline-block;
+      .content {
+        background-color: #eeeeee;
+        padding: 8px 16px;
+        border-radius: 10px;
+      }
+      .author {
+        font-size: 0.8rem;
+        color: #777777;
+        text-align: left; 
+      }
+    }
+    &.me {
+      .content-container {
+        float: right;
+        .content {
+          background-color: #007bff;
+          color: white;
+        }
+        .author {
+          font-size: 0.8rem;
+          color: #777777;
+          text-align: right; 
+        }
+      }
+    }
+  }
+  .chat-box {
+    position: absolute;
+    bottom: -55px;
+    padding: 20px;
+    width: 57.55%;
+    margin-left: -13px;
+    background-color: rgb(255, 255, 255);
+    border-top: 1px solid #eeeeee;
+    border-left: 1px solid #eeeeee;
+    border-right: 1px solid #eeeeee;
+
+    input[type=text] {
+      height: 45px;
+      font-size: 18px;
+      padding: 8px;
+    }
+    .btn {
+      height: 45px;
+    }
+  }
+}
+
+.card.no-outline {
+  border: none;
+}
+
+.room-link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+  .room-card {
+    transition: background-color 0.5s ease;
+    border-radius: 15px;
+    background-color: rgb(242, 242, 242);
+
+    &:hover {
+      background-color: rgba(151, 169, 188, 0.954);
+    }
+    &:active {
+      background-color: cornflowerblue;
+      .name {
+        color: white;
+      }
+      .member-count {
+        color: #e0e0e0;
+      }
+    }
+    .name {
+      // font-weight: bold;
+      color: black;
+    }
+    .member-count {
+      color:  #595959;
+      font-weight: light;
+    }
+  }
+}
+
+.rooms-sidebar {
+  border-right: 1px solid #eeeeee;
+}
+
+// texts and links on chat bar
+
+.post-title p a {
+  text-decoration: none;
+  color: rgb(96, 114, 131);
+}
+.post-title p a:hover {
+  color: rgb(151, 169, 188);
+}
+
+.bar-chatroom, .card-body-chat {
+  display: flex;
+}
+
+.chatroom-opposed-user {
+  margin-left: 30px;
+}
+
+.card-body-chat-name {
+  margin-left: 30px;
+}
+
+// other css to overwrite global css
+.card-chat {
+  max-width: 325px;
+  min-width: 325px;
+  width: 45.5%;
+  margin-left: 0%;
+  border: 1px solid rgb(242, 242, 242);
+  background-color: white;
+}
+
+.card-body-chat {
+  width: 50%;
+}
+
+.navbar-chat {
+  width: 56.55%;
+  padding: 10px 2%;
+  background-color: rgba(151, 169, 188, 0.925);
+  position: fixed;
+  margin-bottom: 30px;
+  z-index: 2;
+}
+
+.suggested-user {
+  height: 15vh;
+}
+
+.suggested-user span {
+  height: 70%;
+  overflow-y: scroll;
+}
+
+.suggested-user ul {
+  list-style-type: none; 
+}
+
+.suggested-user a {
+  text-decoration: none;
+  color: rgb(96, 114, 131);
+}
+
+
+
+.welcome-curret-user {
+  display: flex;
+
+  .welcome-username  {
+    text-align: left;
+  }
+  .welcome-newchat h3 {
+    text-align: right;
+  }
+}
+
+
+

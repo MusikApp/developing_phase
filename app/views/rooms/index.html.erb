@@ -1,0 +1,122 @@
+<%= render "partials/nav" %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-3 rooms-sidebar">
+        <div class="card card-chat no-outline">
+          <div class="card-body card-body-chat">
+            <div class="post-title welcome-curret-user"> 
+              <span class="welcome-username">
+                <h3><%= link_to(current_user.username, profile_user_path(current_user.id)) %></h3>
+              </span> 
+              <span class="welcome-newchat" >
+                <i class="fas fa-edit new-chatroom-modal-link" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"></i>
+              </span>
+
+
+                <!-- Modal to Start Conversation -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Nueva conversación</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label">Enviar mensaje a:</label>
+                                <div class="input-group">
+                                  <form class="search-bar">
+                                    <input type="text" class="form-control" id="recipient-name" placeholder="Buscar usuario..." name="query" <%= @q %> >
+                                    <button type="submit" class="btn btn-secondary">Buscar</button>
+                                  </form>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                              <label for="message-text" class="col-form-label">Sugerencias:</label>
+                              <span class="form-control" id="message-text"><%= render 'user_list' %></span>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                          <button type="button" class="btn btn-primary">Iniciar conversación</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+          </div>
+        </div>
+
+        <hr>
+          <form>
+            <div class="mb-3">
+              <label class="col-form-label">Inicia una conversación:</label>
+                <div class="input-group">
+                  <form class="search-bar">
+                    <input type="text" class="form-control" id="recipient-name" placeholder="Buscar usuario..." name="query" <%= @q %> >
+                    <button type="submit" class="btn btn-secondary">Buscar</button>
+                  </form>
+                </div>
+            </div>
+            
+            <div class="suggested-user mb-3">
+              <label class="col-form-label">Sugerencias:</label>
+              <span class="form-control" ><%= render 'user_list' %></span>
+            </div>
+          </form>
+        <hr>
+
+        <% @rooms.each do |room| %>
+          <%= link_to room, class: 'room-link' do %>
+            <% active_class = (@room == room) ? 'active' : '' %>
+            <div class="card card-chat no-outline mb-2 room-card <%= active_class %>" data-room-id="<%= room.id %>">
+              <div class="card-body card-body-chat">
+                <span class="post-avatar">
+                  <%= image_tag room.opposed_user(current_user).avatar_thumbnail, :class => "navbar-thumbnail" %>
+                </span>
+                <span class='name card-body-chat-name'>
+                  <h5><%= room.opposed_user(current_user).name %></h5>
+                </span>
+              </div>
+            <!--<span class='member-count'>
+                  <small><%= link_to room, method: :delete %>X</small>
+                </span>-->
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-7">
+        <% if @room.present? %>
+          <div class="chat-room">
+            <nav class="navbar navbar-light navbar-chat">
+              <span class="navbar-brand bar-chatroom" href="#">
+                <div class="post-avatar">
+                  <%= image_tag @room.opposed_user(current_user).avatar_thumbnail, :class => "navbar-thumbnail" %>
+                </div>
+                <div class="post-title chatroom-opposed-user">  
+                  <p><%= link_to(@room.opposed_user(current_user).username, profile_user_path(@room.opposed_user(current_user).id)) %></p>
+                </div>
+              </span>
+            </nav>
+            <div id="messages">
+              <% @room.messages.each do |message| %>
+                <%= render 'messages/message', message: message %>
+              <% end %>
+            </div>
+            <div class="chat-box">
+              <%= render 'messages/form', message: Message.new, room: @room %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+
+  <%= render 'partials/foot' %>

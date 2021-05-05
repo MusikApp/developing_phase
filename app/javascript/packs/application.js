@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import jQuery from "jquery"
+import '../stylesheets/application.scss'
 
 global.$ = global.jQuery = jQuery
 window.$ = window.jQuery = jQuery
@@ -140,4 +141,10 @@ $(document).on('turbolinks:load', function(e) {
             $(".mobile-menu").hide();
         })
     })
+
+    /* chatroom 
+
+    $(".message").on("click", function(){
+        $(".author").toggle()
+    })*/
 })
