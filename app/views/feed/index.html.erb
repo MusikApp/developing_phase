@@ -56,10 +56,8 @@
         <% end %>
 
         <div class="post-stats">
-          <div class="like-stats">
-            <p data-bs-toggle="modal" data-bs-target="#likesModal<%= post.id %>"><%= post.likes.count %> Me gusta</p>
           <div class="like-stats" id="like_stats_<%= post.id %>">
-            <p><%= post.likes.count %> Me gusta</p>
+            <p data-bs-toggle="modal" data-bs-target="#likesModal<%= post.id %>"><%= post.likes.count %> Me gusta</p>
           </div>
           <div class="comment-stats" id="comment_stats_<%= post.id %>">
             <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comentario' : 'Comentarios'%></p>
