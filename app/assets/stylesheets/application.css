@@ -339,6 +339,12 @@ body {
     outline: none;
 }
 
+.welcome-page {
+    width: 47.5%;
+    margin-left: 10%;
+    text-align: center;
+}
+
 /* switch for demo or post */
 
 /* The switch - the box around the slider */
@@ -955,7 +961,8 @@ hr {
         margin-right: 7.5%;
     }
 
-    .card {
+    .card, 
+    .welcome-page {
         margin-left: 7.5%;
     }
 }
@@ -979,10 +986,13 @@ hr {
         height: 112px;
     }
 
-    .card {
+    .card,
+    .welcome-page {
         margin: 0 auto;
         margin-bottom: 15px;
     }
+
+    
 
     .fields {
         display: grid;
@@ -1282,6 +1292,10 @@ hr {
         margin-right: 0;
     }
 
+    .welcome-page {
+        width: 100%;
+    }
+
     .post-new {
         width: 100%;
         margin-left: 0;
@@ -1418,8 +1432,3 @@ hr {
     }
 }
 
-.welcome-page {
-    width: 70%;
-    margin: 0;
-    text-align: center;
-}
