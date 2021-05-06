@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
 
   # POST /messages or /messages.json
   def create
-    @room = Room.find(params[:id])
+    # @room = Room.find(params[:id])
 
     # @message = Message.new(message_params)
     # @message.user = current_user

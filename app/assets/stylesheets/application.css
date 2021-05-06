@@ -374,9 +374,14 @@ body {
     display: flex;
 }
 
+.like-modal-user {
+    display: flex;
+}
+
 .like-stats {
     width: 50%;
     margin-left: 2%;
+    cursor: pointer;
 }
 
 .comment-stats {

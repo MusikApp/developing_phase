@@ -73,21 +73,23 @@
         <hr>
 
         <% @rooms.each do |room| %>
-          <%= link_to room, class: 'room-link' do %>
-            <% active_class = (@room == room) ? 'active' : '' %>
-            <div class="card card-chat no-outline mb-2 room-card <%= active_class %>" data-room-id="<%= room.id %>">
-              <div class="card-body card-body-chat">
-                <span class="post-avatar">
-                  <%= image_tag room.opposed_user(current_user).avatar_thumbnail, :class => "navbar-thumbnail" %>
-                </span>
-                <span class='name card-body-chat-name'>
-                  <h5><%= room.opposed_user(current_user).name %></h5>
-                </span>
+          <% if room.messages.any? %>
+            <%= link_to room, class: 'room-link' do %>
+              <% active_class = (@room == room) ? 'active' : '' %>
+              <div class="card card-chat no-outline mb-2 room-card <%= active_class %>" data-room-id="<%= room.id %>">
+                <div class="card-body card-body-chat">
+                  <span class="post-avatar">
+                    <%= image_tag room.opposed_user(current_user).avatar_thumbnail, :class => "navbar-thumbnail" %>
+                  </span>
+                  <span class='name card-body-chat-name'>
+                    <h5><%= room.opposed_user(current_user).name %></h5>
+                  </span>
+              <span class='member-count'>
+                    <small><%= link_to "X", room, method: :delete %></small>
+                  </span>
+                </div>
               </div>
-            <!--<span class='member-count'>
-                  <small><%= link_to room, method: :delete %>X</small>
-                </span>-->
-            </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>

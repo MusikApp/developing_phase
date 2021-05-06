@@ -7,7 +7,8 @@ class RoomsController < ApplicationController
     @users = User.all.where.not(id: current_user)
     @rooms = Room.includes(:recipient, :messages).find(session[:rooms])
     # @suggestions = User.all.where()
-
+    # @rooms = Room.my_rooms(current_user)
+    
     #search users
     @q = params[:query]
       

@@ -1,8 +1,10 @@
 class FeedController < ApplicationController
     def index
+        # session.delete(:rooms)
         @users = User.all
-        @posts = Post.all
+        @posts = Post.all.order('posts.created_at DESC')
         follower_ids = current_user.followers.map(&:follower_id)
+
 
         @comments = Comment.all
         @comment = Comment.new
