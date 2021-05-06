@@ -19,6 +19,11 @@ class Post < ApplicationRecord
   #   end
   # end
 
+
+  def self.followed_user(user)
+    where(user_id: user.following.collect(&:followed_id))
+  end
+
   def acceptable_image
     return unless image.attached?
 

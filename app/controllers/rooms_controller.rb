@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   # GET /rooms or /rooms.json
   def index
     session[:rooms] ||= []
-    @users = User.all.where.not(id: current_user)
+    @users = User.followed_user(current_user)
     @rooms = Room.includes(:recipient, :messages).find(session[:rooms])
     # @suggestions = User.all.where()
     # @rooms = Room.my_rooms(current_user)
@@ -27,7 +27,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1 or /rooms/1.json
   def show
     session[:rooms] ||= []
-    @users = User.all.where.not(id: current_user)
+    @users = User.followed_user(current_user)
     @rooms = Room.includes(:recipient, :messages).find(session[:rooms])
 
     #search users
