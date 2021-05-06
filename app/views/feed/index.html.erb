@@ -95,7 +95,7 @@
                                   <% if l.user.followers.find_by(follower: current_user).present? %>
                                     <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
                                   <% elsif %>
-                                    <%= link_to 'Seguir', user_relationships_path(l.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
+                                    <%= link_to 'Seguir', follow_path(l.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
                                   <% end %>
                                 </div>
                               <% end %>
@@ -208,9 +208,6 @@
     </div>
 
   <% end %>
-<<<<<<< HEAD
 </div>
 
-=======
->>>>>>> 138ab4ee8e8aff0133317a218c65095ca4c28d1f
 <%= render 'partials/foot' %>
