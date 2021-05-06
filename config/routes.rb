@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   resources :demos
-=======
   resources :rooms do
     resources :messages
   end
   
->>>>>>> dcf63b76e7fa04c49ced00a70e05f6662b1c040b
   resources :posts do
     resources :likes, only: %i[create destroy]
   end

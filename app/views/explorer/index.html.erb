@@ -1,2 +1,18 @@
 <%= render 'partials/nav' %>
+
+<div class="demo-case">
+    <% @demos.each do |demo| %>
+        <div class="demo-wrapper">
+            <div class="demo-info">
+                <%= image_tag(demo.user.avatar_thumbnail, class: "demo-avatar") %> <br>
+                <%= demo.user.username %> <br>
+            </div>
+            <div class="demo-description">
+                <%= demo.content %> <br>
+            </div>
+            <%= video_tag(url_for(demo.video), :controls => "", :class => "demo-video") %> <br>
+        </div>
+    <% end %>
+</div>
+
 <%= render 'partials/foot' %>
