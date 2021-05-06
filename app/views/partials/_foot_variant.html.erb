@@ -7,18 +7,18 @@
   </form>
 </div>
 <ul>
-    <li class="">
+    <li class="<%= 'active' if current_page?(root_path) %>">
       <%= link_to(root_path) do %>
         <i class="fas fa-home"></i>
       <% end  %>
     </li>
-    <li>
+    <li class="<%= 'active' if current_page?(explorer_index_path) %>">
       <%= link_to() do %>
         <i class="fas fa-compass"></i>
       <% end %>
     </li>
     <% if current_user %>
-        <li class="foot-menu">
+        <li class="foot-menu <%= 'active' if current_page?(profile_path) %>">
             <%= image_tag current_user.avatar_thumbnail, :class => "footer-thumbnail", :id => "footer-thumbnail" %> 
         </li>
     <% else %>

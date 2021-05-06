@@ -1,23 +1,24 @@
 class RelationshipsController < ApplicationController
     before_action :authenticate_user!
 
-
     def create
-        other_user = User.find(params[:user_id])
-        @rel = Relationship.new(follower_id: current_user.id,
-                                 followed_id: other_user.id)
-        @rel.save
-        # redirect_to user_path(other_user)
-        redirect_to root_path
+        respond_to do |format|
+            other_user = User.find(params[:id])
+            @rel = Relationship.new(follower_id: current_user.id,
+                                     followed_id: other_user.id)
+            @rel.save
 
-  
+            format.js{}
+        end
     end
     
     def destroy
-        @rel = Relationship.find(params[:id])
-        @rel.destroy
-        # redirect_to user_path(@rel.followed_id)
-        redirect_to root_path
+        respond_to do |format|
+            other_user = User.find(params[:id])
+            @rel = Relationship.find(current_user.following.where(followed_id: other_user.id).ids.first)
+            @rel.destroy
 
+            format.js{}
+        end
     end
 end

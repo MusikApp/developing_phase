@@ -1,0 +1,5 @@
+<% @user = User.find(params[:id]) %>
+
+$("#buttons").html('<%= link_to 'Dejar de Seguir', unfollow_path, method: "delete", remote: "true", class: "edit-button" %>')
+$("#edit-mobile").html('<%= link_to 'Dejar de Seguir', unfollow_path, method: "delete", remote: "true", class: "edit-button-mobile" %>')
+$("#follow-stats").html('<strong><%= @user.followers.count %></strong> Seguidores')

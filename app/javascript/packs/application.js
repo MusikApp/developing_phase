@@ -18,17 +18,50 @@ Turbolinks.start()
 ActiveStorage.start()
 
 /* Focus */
-$(document).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', function(e) {
     /* On click events */
-    $("nav li").on("mouseover", function(){
-        $("body").find(".active").removeClass("active");
-        $(this).addClass("active");
+    $(".fa-bell").on("click", function(e){
+        let target = e.target.parentElement;
+
+        if (target.classList.contains("active")) {
+            $(target).removeClass("active");
+        } else {
+            $(target).addClass("active");
+        }
     });
 
-    $("footer li").on("mouseover", function(){
-        $("body").find(".active").removeClass("active");
-        $(this).addClass("active");
+    $(".foot-search").on("click", function(e){
+        let target = e.target.parentElement;
+
+        if (target.classList.contains("active")) {
+            $(target).removeClass("active");
+        } else {
+            $(target).addClass("active");
+        }
+        
     });
+
+    /* switch actions */
+
+    $(".switch").on("mousedown", function() {
+        let checkbox = document.querySelector('input[type="checkbox"]');
+
+        if (!checkbox.checked) {
+            $(this).on("click", function() {
+                $(".demo-form").show();
+                $(".post-form").hide();
+                $(".leyend").html('¿Quieres hacer una publicación?')
+            })
+        } else if (checkbox.checked) {
+            $(this).on("click", function() {
+                $(".demo-form").hide();
+                $(".post-form").show();
+                $(".leyend").html('¿Quieres publicar un demo?')
+            })
+        }
+    })
+
+    /* comments actions */
 
     $(".comments").on("click", function(e) {
         let comments = e.target.parentElement.parentElement.parentElement.lastElementChild;

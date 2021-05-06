@@ -1,0 +1,18 @@
+<%= form_with url: demos_path, method: :post, class: "demo-form" do |form| %>
+    <div class="field">
+        <%= form.text_area :content, :placeholder => "¡Comparte tu demo!", :id => "post-area" %>
+    </div>
+
+    <div class="post-actions">
+        <div class="field">
+            <label class="btn btn-file">
+            <i class="fas fa-film"></i>
+            <%= form.file_field :video, accept: "video/*" %>
+            </label>
+        </div>
+
+        <div class="actions">
+            <button type="submit" name="commit" class="post-submit">Publicar</button>
+        </div>
+    </div>
+<% end %>
