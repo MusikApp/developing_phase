@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :rooms, foreign_key: :sender_id
   has_many :notifications, as: :recipient
 
+  def self.followed_user(user)
+    where(id: user.following.collect(&:followed_id))
+  end
          
   has_one_attached :avatar  
   validate :acceptable_avatar 

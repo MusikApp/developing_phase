@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :likes, only: %i[create destroy]
   end
 
+  resources :likes, only: %i[index]
+
   devise_for :users, :controllers => { :registrations => :registrations }
   
   root 'feed#index'
