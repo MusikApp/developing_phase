@@ -345,6 +345,8 @@ body {
     text-align: center;
 }
 
+
+
 /* switch for demo or post */
 
 /* The switch - the box around the slider */
@@ -417,6 +419,16 @@ body {
     max-width: 682px;
     min-width: 682px;
     width: 47.5%;
+    margin-left: 10%;
+    border: 1px solid rgb(242, 242, 242);
+    background-color: #f8f8f8;
+    margin-bottom: 15px;
+}
+
+.welcome-card {
+    max-width: 25rem;
+    min-width: 25rem;
+    width: 25rem,;
     margin-left: 10%;
     border: 1px solid rgb(242, 242, 242);
     background-color: #f8f8f8;
