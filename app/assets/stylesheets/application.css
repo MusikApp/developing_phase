@@ -982,17 +982,31 @@ hr {
         margin-bottom: 15px;   
     }
 
+    .demo {
+        height: 50px;
+        position: relative;
+        max-width: 682px;
+        min-width: 682px;
+        width: 47.5%;
+        margin: 0 auto;
+    }
+
     .search-section {
         height: 112px;
     }
 
-    .card,
-    .welcome-page {
+    .card {
         margin: 0 auto;
         margin-bottom: 15px;
     }
 
-    
+    .welcome-page {
+        margin: 0 auto;
+    }
+
+    .welcome {
+        margin-top: 20px;
+    }    
 
     .fields {
         display: grid;
@@ -1305,6 +1319,14 @@ hr {
         height: 125px;
     }
 
+    .demo {
+        width: 99%;
+        margin-left: 0;
+        margin-right: 0;
+        min-width: 600px;
+        max-width: 700px;
+    }
+
     .feed {
         padding-top: 15px;
     }
@@ -1370,7 +1392,8 @@ hr {
 
 @media only screen and (max-width: 600px) {
     .post-new, 
-    .card {
+    .card,
+    .demo {
         min-width: 500px;
         max-width: 600px;
     }
@@ -1384,7 +1407,8 @@ hr {
 }
 @media only screen and (max-width: 500px) {
     .post-new, 
-    .card {
+    .card,
+    .demo {
         min-width: 400px;
         max-width: 500px;
     }
@@ -1399,7 +1423,8 @@ hr {
 }
 @media only screen and (max-width: 400px) {
     .post-new, 
-    .card {
+    .card,
+    .demo {
         min-width: 300px;
         max-width: 400px;
     }
@@ -1419,7 +1444,8 @@ hr {
 
 @media only screen and (max-width: 330px) {
     .post-new, 
-    .card {
+    .card,
+    .demo {
         min-width: 300px;
         max-width: 330px;
     }

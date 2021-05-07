@@ -208,17 +208,11 @@
 
   <% end %>
 <% else %>
+  <div class="welcome">
     <h2 class="welcome-page">Bienvenide a MusikApp</h2>
     <p class="welcome-page">Las publicaciones de las personas que sigas, se motrarán aquí.</p>
     <p class="welcome-page"><strong>Selecciona la pestaña explorar para conectar con más gente.</strong></p>
-
-    <div class="suggestions">
-      <% @users.sample(5).each do |user| %>
-      <div class="suggestion-card">
-        <%= user.username %>
-      </div>
-      <% end %>
-    </div>
+  </div>
 <% end %>
 </div>
 
