@@ -314,7 +314,7 @@ body {
     margin-top: 128px;
     background-color: rgb(242, 242, 242);
 }
-
+ 
 .demo {
     width: 27.5%;
     margin-right: 7.5%; 
@@ -425,14 +425,46 @@ body {
     margin-bottom: 15px;
 }
 
-.welcome-card {
-    max-width: 25rem;
-    min-width: 25rem;
-    width: 25rem,;
+.welcome {
+    max-width: 682px;
+    min-width: 682px;
+    width: 47.5%;
     margin-left: 10%;
-    border: 1px solid rgb(242, 242, 242);
+}
+
+.welcome-page {
+    width: 100%;
+    margin: 0;
+    margin-left: 0;
+}
+
+.suggestions {
+    max-width: 682px;
+    min-width: 682px;
+    width: 47.5%;
+    margin-left: 10%;
+}
+
+.welcome-card {
+    width: 50%;
+    height: 350px;
+    margin: 0 auto;
     background-color: #f8f8f8;
+    padding-top: 30px;
     margin-bottom: 15px;
+}
+
+.suggestion-button {
+    background-color: rgb(96, 114, 131);
+    padding: 5px 10px;
+    height: 30px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.suggestion-button:hover {
+    color: white;
 }
 
 .post_image,
@@ -965,6 +997,9 @@ hr {
     display: none;
 }
 
+/* Suggestions */
+
+
 /* Responsiveness */
 
 @media only screen and (max-width: 1450px) {
@@ -973,8 +1008,9 @@ hr {
         margin-right: 7.5%;
     }
 
-    .card, 
-    .welcome-page {
+    .card,
+    .welcome,
+    .suggestions {
         margin-left: 7.5%;
     }
 }
@@ -992,6 +1028,14 @@ hr {
         width: 47.5%;
         margin: 0 auto;
         margin-bottom: 15px;   
+    }
+
+    .suggestions, 
+    .welcome {
+        max-width: 682px;
+        min-width: 682px;
+        width: 47.5%;
+        margin: 0 auto;
     }
 
     .demo {
@@ -1310,7 +1354,9 @@ hr {
         padding: 40px 0;
     }
 
-    .card {
+    .card,
+    .suggestions, 
+    .welcome {
         width: 100%;
         min-width: 600px;
         max-width: 700px;
@@ -1320,6 +1366,10 @@ hr {
 
     .welcome-page {
         width: 100%;
+    }
+
+    .welcome-card {
+        padding-top: 1px;
     }
 
     .post-new {
@@ -1340,7 +1390,7 @@ hr {
     }
 
     .feed {
-        padding-top: 15px;
+        padding-top: 0;
     }
 
     .post-new textarea {
@@ -1405,9 +1455,15 @@ hr {
 @media only screen and (max-width: 600px) {
     .post-new, 
     .card,
-    .demo {
+    .demo,
+    .suggestions, 
+    .welcome {
         min-width: 500px;
         max-width: 600px;
+    }
+
+    .welcome-card {
+        height: 250px;
     }
 
     .post_image,
@@ -1420,7 +1476,9 @@ hr {
 @media only screen and (max-width: 500px) {
     .post-new, 
     .card,
-    .demo {
+    .demo,
+    .suggestions, 
+    .welcome {
         min-width: 400px;
         max-width: 500px;
     }
@@ -1436,7 +1494,9 @@ hr {
 @media only screen and (max-width: 400px) {
     .post-new, 
     .card,
-    .demo {
+    .demo,
+    .suggestions, 
+    .welcome {
         min-width: 300px;
         max-width: 400px;
     }
@@ -1457,7 +1517,9 @@ hr {
 @media only screen and (max-width: 330px) {
     .post-new, 
     .card,
-    .demo {
+    .demo,
+    .suggestions, 
+    .welcome {
         min-width: 300px;
         max-width: 330px;
     }

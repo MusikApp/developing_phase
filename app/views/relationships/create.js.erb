@@ -3,3 +3,5 @@
 $("#buttons").html('<%= link_to 'Dejar de Seguir', unfollow_path, method: "delete", remote: "true", class: "edit-button" %>')
 $("#edit-mobile").html('<%= link_to 'Dejar de Seguir', unfollow_path, method: "delete", remote: "true", class: "edit-button-mobile" %>')
 $("#follow-stats").html('<strong><%= @user.followers.count %></strong> Seguidores')
+$("#suggestions_<%= @user.id %>").html('<p class="text-center">¡Siguiendo!</p>')
+$("#follow_stats_<%= @user.id %>").html('<small><%= @user.followers.count %> <%= (@user.followers.count) == 1 ? 'Seguidor' : 'Seguidores'%></small>')
