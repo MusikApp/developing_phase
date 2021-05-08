@@ -28,16 +28,18 @@ $(document).on('turbolinks:load', function(e) {
         } else {
             $(target).addClass("active");
         }
-
-        $(document).on("mouseup", function(e) {
-            const container = $(".fa-bell");
-        
-            if (!container.is(e.target) && container.has(e.target).length === 0) 
-            {
-                container.removeClass("active");
-            }
-        })
     });
+
+    $(document).on("mouseup", function(e) {
+        const container = $(".notifications")
+    
+        if (!container.is(e.target) && container.has(e.target).length === 0) 
+        {
+            container.removeClass("active");
+        }
+    })
+
+    /* Foot Search Section */
 
     $(".foot-search").on("click", function(e){
         let target = e.target.parentElement;
