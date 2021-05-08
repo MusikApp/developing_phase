@@ -28,6 +28,15 @@ $(document).on('turbolinks:load', function(e) {
         } else {
             $(target).addClass("active");
         }
+
+        $(document).on("mouseup", function(e) {
+            const container = $(".fa-bell");
+        
+            if (!container.is(e.target) && container.has(e.target).length === 0) 
+            {
+                container.removeClass("active");
+            }
+        })
     });
 
     $(".foot-search").on("click", function(e){
@@ -38,8 +47,23 @@ $(document).on('turbolinks:load', function(e) {
         } else {
             $(target).addClass("active");
         }
-        
     });
+
+    /* Post Options */
+
+    $(".fa-ellipsis-v").on("click", function(e) {
+        let parent = e.target.parentElement.lastElementChild;
+        $(parent).toggle();
+
+        $(document).on("mouseup", function(e) {
+            const container = $(".profile-post-options");
+        
+            if (!container.is(e.target) && container.has(e.target).length === 0) 
+            {
+                container.hide();
+            }
+        })
+    })
 
     /* switch actions */
 
@@ -82,9 +106,6 @@ $(document).on('turbolinks:load', function(e) {
     })
 
 
-    
-
-
     /* back2top */
     $(window).scroll(function() {
         var height = $(window).scrollTop();
@@ -112,34 +133,51 @@ $(document).on('turbolinks:load', function(e) {
         $(".footer-search-section").toggle();
     })
 
-    $(".navbar-thumbnail").on("mouseover", function() {
-        $(".menu").show();
-        $(document).on("mouseup", function(e) {
-            const container = $(".menu");
+    $(document).on("mouseup", function(e) {
+        const container = $(".footer-search-section");
+    
+        if (!container.is(e.target)) 
+        {
+            container.hide(); 
+            $(".foot-search").removeClass("active");
+        }
+    })
+
+    /* Navbar Menu */
+
+    $(".navbar-thumbnail").on("click", function() {
+        $(".menu").toggle();
         
-            if (!container.is(e.target) && container.has(e.target).length === 0) 
-            {
-                container.hide();
-            }
-        })
         $(".menu-list").on("click", function() {
             $(".menu").hide();
         })
+    });
+
+    $(document).on("mouseup", function(e) {
+        const container = $(".menu");
+    
+        if (!container.is(e.target)) 
+        {
+            container.hide();
+        }
     })
 
-    $(".footer-thumbnail").on("mouseover", function() {
+    /* Footer Menu */
+
+    $(".footer-thumbnail").on("click", function() {
         $(".mobile-menu").toggle();
-        $(document).on("mouseup", function(e) {
-            const container = $(".mobile-menu");
-        
-            if (!container.is(e.target) && container.has(e.target).length === 0) 
-            {
-                container.hide();
-            }
-        })
         $(".mobile-menu-list").on("click", function() {
             $(".mobile-menu").hide();
         })
+    })
+
+    $(document).on("mouseup", function(e) {
+        const container = $(".mobile-menu");
+    
+        if (!container.is(e.target)) 
+        {
+            container.hide();
+        }
     })
 
     /* chatroom 

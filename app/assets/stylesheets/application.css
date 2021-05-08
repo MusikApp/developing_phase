@@ -143,22 +143,69 @@ body {
 
 .profile-post-wrapper .head {
     width: 90%;
-    margin-left: 4%;
-    margin-top: 15px;    
+    margin: 0 auto;
+    margin-top: 15px;   
+    display: grid; 
+    grid-template-columns: 10% 80% 10%;
 }
 
 .profile-post-avatar {
     width: 10%;
-    display: inline;
+    display: inline-block;
 }
 
 .profile-post-title {
     width: 80%;
-    float: right;
+    display: inline;
 }
 
 .profile-post-title p {
     margin: 0;
+}
+
+.fa-ellipsis-v {
+    font-size: 20px;
+    float: right;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.profile-post-options {
+    display: none;
+    position: absolute;
+    background-color: rgb(242, 242, 242);
+    border-radius: 10px;
+    z-index: 3;
+    height: 80px;
+    width: 100px;
+}
+
+.profile-post-options ul {
+    margin-left: 0;
+    padding-left: 0;
+    padding: 10px 10px;
+    margin-bottom: 15px;
+}
+
+.profile-post-options li {
+    text-decoration: none;
+    list-style-type: none;
+    outline: none;
+    margin: 5px 0;
+    padding-left: 5px;
+    width: 95%;
+}
+
+.profile-post-options li:hover {
+    background-color:rgb(193, 193, 193);
+    border-radius: 5px;
+}
+
+.profile-post-options a {
+    outline: none;
+    text-decoration: none;
+    color: rgb(110, 127, 145);
+    font-weight: bold;
 }
 
 .profile-post-content {
@@ -1013,6 +1060,11 @@ hr {
     .suggestions {
         margin-left: 7.5%;
     }
+
+    .profile-post-title {
+        width: 75%;
+        display: inline;
+    }
 }
 
   @media only screen and (max-width: 1250px) {
@@ -1184,11 +1236,15 @@ hr {
     .demo-case {
         column-count: 2; 
     }
+
+    .profile-post-title {
+        width: 70%;
+        margin-left: 3%;
+        display: inline;
+    }
 }
 
 @media only screen and (max-width: 995px) {
-
-
     .profile-post-wrapper {
         width: 80%;
     }
@@ -1354,6 +1410,10 @@ hr {
         padding: 40px 0;
     }
 
+    .profile-post-options {
+        right: 0;
+    }
+
     .card,
     .suggestions, 
     .welcome {
@@ -1490,6 +1550,12 @@ hr {
         margin-left: 0;
         margin-right: 0;
     }
+
+    .profile-post-title {
+        width: 70%;
+        margin-left: 9%;
+        display: inline;
+    }
 }
 @media only screen and (max-width: 400px) {
     .post-new, 
@@ -1500,7 +1566,7 @@ hr {
         min-width: 300px;
         max-width: 400px;
     }
-    
+
     .post_image,
     .post_video {
         width: 100%;

@@ -37,9 +37,7 @@
             <p> <%= link_to(post.user.username, profile_user_path(post.user.id)) %></p>
             <p class="post-date"><%= I18n.l(post.created_at, format: :long) %></p>
           </div>
-          <div>
-            <i class="fas fa-ellipsis-h"></i>
-          </div>
+          
 
         </div>
         <br>

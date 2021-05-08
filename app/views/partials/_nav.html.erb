@@ -33,11 +33,9 @@
               <i class="fas fa-bell"></i>
           </li>
           <% if current_user %>
-            <%= link_to profile_path do %>
             <li class="nav-item <%= 'active' if current_page?(profile_path) %>">
               <%= image_tag current_user.avatar_thumbnail, :class => "navbar-thumbnail", :id => "navbar-thumbnail" %> 
             </li>
-            <% end %>
           <% else %>
             <li class="nav-item">
               <%= link_to(new_user_session_path) do %>

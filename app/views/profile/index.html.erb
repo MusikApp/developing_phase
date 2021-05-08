@@ -39,6 +39,19 @@
                                 <p><%= post.user.username %></p>
                                 <p><%= I18n.l(post.created_at, format: '%d de %B de %Y') %></p>
                             </div>
+                            <div class="profile-post-delete">
+                                <i class="fas fa-ellipsis-v"></i>
+                              <div class="profile-post-options">
+                                <ul>
+                                  <li>
+                                    <%= link_to 'Editar', edit_post_path(post.id), method: "post" %>
+                                  </li>
+                                  <li>
+                                    <%= link_to 'Eliminar', post_path(post.id), method: "delete", :data => {:confirm => '¿Estás Seguro?'} %>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
                         </div>
                         <br>
                         <div class="profile-post-content">
