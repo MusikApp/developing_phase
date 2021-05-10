@@ -1,5 +1,6 @@
 class ProfileController < ApplicationController
-
+    before_action :authenticate_user!
+    
     def index
         @my_posts = Post.where(user_id: current_user.id).reverse
     end

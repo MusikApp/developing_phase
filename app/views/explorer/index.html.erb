@@ -4,13 +4,14 @@
     <% @demos.each do |demo| %>
         <div class="demo-wrapper">
             <div class="demo-info">
-                <%= image_tag(demo.user.avatar_thumbnail, class: "demo-avatar") %> <br>
-                <%= demo.user.username %> <br>
+                <%= image_tag(demo.user.avatar_thumbnail, class: "demo-avatar") %>
+                <%= link_to(demo.user.username, profile_user_path(demo.user.id)) %>
+                
+                <div class="demo-description">
+                    <%= demo.content %>
+                </div>
             </div>
-            <div class="demo-description">
-                <%= demo.content %> <br>
-            </div>
-            <%= video_tag(url_for(demo.video), :controls => "", :class => "demo-video") %> <br>
+            <%= video_tag(url_for(demo.video), :controls => "", :class => "demo-video") %>
         </div>
     <% end %>
 </div>
