@@ -143,22 +143,69 @@ body {
 
 .profile-post-wrapper .head {
     width: 90%;
-    margin-left: 4%;
-    margin-top: 15px;    
+    margin: 0 auto;
+    margin-top: 15px;   
+    display: grid; 
+    grid-template-columns: 10% 80% 10%;
 }
 
 .profile-post-avatar {
     width: 10%;
-    display: inline;
+    display: inline-block;
 }
 
 .profile-post-title {
     width: 80%;
-    float: right;
+    display: inline;
 }
 
 .profile-post-title p {
     margin: 0;
+}
+
+.fa-ellipsis-v {
+    font-size: 20px;
+    float: right;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.profile-post-options {
+    display: none;
+    position: absolute;
+    background-color: rgb(242, 242, 242);
+    border-radius: 10px;
+    z-index: 3;
+    height: 80px;
+    width: 100px;
+}
+
+.profile-post-options ul {
+    margin-left: 0;
+    padding-left: 0;
+    padding: 10px 10px;
+    margin-bottom: 15px;
+}
+
+.profile-post-options li {
+    text-decoration: none;
+    list-style-type: none;
+    outline: none;
+    margin: 5px 0;
+    padding-left: 5px;
+    width: 95%;
+}
+
+.profile-post-options li:hover {
+    background-color:rgb(193, 193, 193);
+    border-radius: 5px;
+}
+
+.profile-post-options a {
+    outline: none;
+    text-decoration: none;
+    color: rgb(110, 127, 145);
+    font-weight: bold;
 }
 
 .profile-post-content {
@@ -314,7 +361,7 @@ body {
     margin-top: 128px;
     background-color: rgb(242, 242, 242);
 }
-
+ 
 .demo {
     width: 27.5%;
     margin-right: 7.5%; 
@@ -425,14 +472,46 @@ body {
     margin-bottom: 15px;
 }
 
-.welcome-card {
-    max-width: 25rem;
-    min-width: 25rem;
-    width: 25rem,;
+.welcome {
+    max-width: 682px;
+    min-width: 682px;
+    width: 47.5%;
     margin-left: 10%;
-    border: 1px solid rgb(242, 242, 242);
+}
+
+.welcome-page {
+    width: 100%;
+    margin: 0;
+    margin-left: 0;
+}
+
+.suggestions {
+    max-width: 682px;
+    min-width: 682px;
+    width: 47.5%;
+    margin-left: 10%;
+}
+
+.welcome-card {
+    width: 50%;
+    height: 350px;
+    margin: 0 auto;
     background-color: #f8f8f8;
+    padding-top: 30px;
     margin-bottom: 15px;
+}
+
+.suggestion-button {
+    background-color: rgb(96, 114, 131);
+    padding: 5px 10px;
+    height: 30px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.suggestion-button:hover {
+    color: white;
 }
 
 .post_image,
@@ -965,6 +1044,9 @@ hr {
     display: none;
 }
 
+/* Suggestions */
+
+
 /* Responsiveness */
 
 @media only screen and (max-width: 1450px) {
@@ -973,9 +1055,15 @@ hr {
         margin-right: 7.5%;
     }
 
-    .card, 
-    .welcome-page {
+    .card,
+    .welcome,
+    .suggestions {
         margin-left: 7.5%;
+    }
+
+    .profile-post-title {
+        width: 75%;
+        display: inline;
     }
 }
 
@@ -992,6 +1080,14 @@ hr {
         width: 47.5%;
         margin: 0 auto;
         margin-bottom: 15px;   
+    }
+
+    .suggestions, 
+    .welcome {
+        max-width: 682px;
+        min-width: 682px;
+        width: 47.5%;
+        margin: 0 auto;
     }
 
     .demo {
@@ -1140,11 +1236,15 @@ hr {
     .demo-case {
         column-count: 2; 
     }
+
+    .profile-post-title {
+        width: 70%;
+        margin-left: 3%;
+        display: inline;
+    }
 }
 
 @media only screen and (max-width: 995px) {
-
-
     .profile-post-wrapper {
         width: 80%;
     }
@@ -1310,7 +1410,13 @@ hr {
         padding: 40px 0;
     }
 
-    .card {
+    .profile-post-options {
+        right: 0;
+    }
+
+    .card,
+    .suggestions, 
+    .welcome {
         width: 100%;
         min-width: 600px;
         max-width: 700px;
@@ -1320,6 +1426,10 @@ hr {
 
     .welcome-page {
         width: 100%;
+    }
+
+    .welcome-card {
+        padding-top: 1px;
     }
 
     .post-new {
@@ -1340,7 +1450,7 @@ hr {
     }
 
     .feed {
-        padding-top: 15px;
+        padding-top: 0;
     }
 
     .post-new textarea {
@@ -1405,9 +1515,15 @@ hr {
 @media only screen and (max-width: 600px) {
     .post-new, 
     .card,
-    .demo {
+    .demo,
+    .suggestions, 
+    .welcome {
         min-width: 500px;
         max-width: 600px;
+    }
+
+    .welcome-card {
+        height: 250px;
     }
 
     .post_image,
@@ -1420,7 +1536,9 @@ hr {
 @media only screen and (max-width: 500px) {
     .post-new, 
     .card,
-    .demo {
+    .demo,
+    .suggestions, 
+    .welcome {
         min-width: 400px;
         max-width: 500px;
     }
@@ -1432,15 +1550,23 @@ hr {
         margin-left: 0;
         margin-right: 0;
     }
+
+    .profile-post-title {
+        width: 70%;
+        margin-left: 9%;
+        display: inline;
+    }
 }
 @media only screen and (max-width: 400px) {
     .post-new, 
     .card,
-    .demo {
+    .demo,
+    .suggestions, 
+    .welcome {
         min-width: 300px;
         max-width: 400px;
     }
-    
+
     .post_image,
     .post_video {
         width: 100%;
@@ -1457,7 +1583,9 @@ hr {
 @media only screen and (max-width: 330px) {
     .post-new, 
     .card,
-    .demo {
+    .demo,
+    .suggestions, 
+    .welcome {
         min-width: 300px;
         max-width: 330px;
     }

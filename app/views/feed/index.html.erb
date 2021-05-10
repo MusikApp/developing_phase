@@ -37,9 +37,7 @@
             <p> <%= link_to(post.user.username, profile_user_path(post.user.id)) %></p>
             <p class="post-date"><%= I18n.l(post.created_at, format: :long) %></p>
           </div>
-          <div>
-            <i class="fas fa-ellipsis-h"></i>
-          </div>
+          
 
         </div>
         <br>
@@ -70,42 +68,42 @@
 
 
   <!---------------------------- Start Likes Modal ---------------------------->
-    <div class="modal fade" id="likesModal<%= post.id %>" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header ">
-            <h5 class="modal-title" id="likesModalLabel">Likes</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <div class="row">
-                  <% post.likes.each do |l| %>
-                    <div class="col-8 mb-4">
-                      <div class="like-modal-user text-right">
-                        <div class="post-avatar">
-                          <%= image_tag l.user.avatar_thumbnail, :class => "post-thumbnail" %>
-                        </div>
-                        <div class="post-title">
-                          <p class="mx-4"><%= link_to l.user.name, profile_user_path(l.user.id) %></p>
-                          <p class="text-muted post-date mx-4"><%= l.user.username %></p>
+                <div class="modal fade" id="likesModal<%= post.id %>" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header ">
+                        <h5 class="modal-title" id="likesModalLabel">Likes</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="container">
+                          <div class="row">
+                              <% post.likes.each do |l| %>
+                                <div class="col-8 mb-4">
+                                  <div class="like-modal-user text-right">
+                                    <div class="post-avatar">
+                                      <%= image_tag l.user.avatar_thumbnail, :class => "post-thumbnail" %>
+                                    </div>
+                                    <div class="post-title">
+                                      <p class="mx-4"><%= link_to l.user.name, profile_user_path(l.user.id) %></p>
+                                      <p class="text-muted post-date mx-4"><%= l.user.username %></p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-4 mb-4 text-end">
+                                  <% if l.user.followers.find_by(follower: current_user).present? %>
+                                    <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
+                                  <% elsif %>
+                                    <%= link_to 'Seguir', follow_path(l.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
+                                  <% end %>
+                                </div>
+                              <% end %>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-4 mb-4 text-end">
-                      <% if l.user.followers.find_by(follower: current_user).present? %>
-                        <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
-                      <% elsif %>
-                        <%= link_to 'Seguir', follow_path(l.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
-                      <% end %>
-                    </div>
-                  <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                  </div>
+                </div>
 
   <!---------------------------- End Likes Modal ---------------------------->
 
@@ -205,18 +203,15 @@
         </div>
 
     </div>
+
   <% end %>
 
-<!---------------------------- Start Welcome Section ---------------------------->
+
 
 <% else %>
-  <div class="row">
-    <div class="col-xl-2"></div>
-      <div class="col-xl-4 text-center">
-        <h2 class="">Bienvenide a MusikApp</h2>
-        <p class="">Las publicaciones de las personas que sigas, se motrarán aquí.</p>
-        <p class=""><strong>Selecciona la pestaña explorar para conectar con más gente.</strong></p>
-      </div>
+  <div class="welcome">
+    <h2 class="welcome-page">Bienvenido a MusikApp</h2>
+    <p class="welcome-page">Las publicaciones de las personas que sigas, se motrarán aquí.</p>
   </div>
     <!--Welcome sugestions cards carousel-->
   <div class="suggestions mt-5">
@@ -251,10 +246,31 @@
                   </button>
                 </div>
               </div>
-            <% end %>
-          </div>          
-        </div>
-      </div>
+              <div class="text-center">
+                <h5 class="text-center"><%= user.username %></h5>
+                <p class="text-center"><small><%= "#{user.name} #{user.last_name}" %></small></p>
+              </div>
+              <div class="text-center suggestion-follow" id="suggestions_<%= user.id %>">
+                <% if user.followers.find_by(follower: current_user).present? %>
+                  <p class="text-center">¡Siguiendo!</p>
+                <% else %>
+                  <%= link_to 'Seguir', follow_path(user), class: "suggestion-button", remote: true, method: :post %>
+                <% end %>
+              </div>
+              <p class="text-center" id="follow_stats_<%= user.id %>"><small><%= user.followers.count %> <%= (user.followers.count) == 1 ? 'Seguidor' : 'Seguidores'%></small></p>
+              <p class="text-center"><small>Recommendado por <br> MusikApp</small></p>
+              <button class="carousel-dark carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-dark carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        <% end %>
+      </div>  
     </div>
   </div>
 <!---------------------------- End Welcome Section ---------------------------->

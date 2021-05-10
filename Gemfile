@@ -60,3 +60,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "noticed", "~> 1.3"
+
+gem "aws-sdk-s3", "~> 1.94"
+
+gem "chartkick", "~> 4.0"
+
+gem "groupdate", "~> 5.2"
+
+gem "faker", "~> 2.17"

@@ -8,6 +8,7 @@ class FeedController < ApplicationController
         follower_ids = current_user.followers.map(&:follower_id)
 
         @welcome_users = User.all.where.not(id: current_user)
+
         @welcome_posts = Post.all.where.not(user_id: current_user.id).order('posts.created_at DESC')
 
           

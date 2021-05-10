@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :registrations => :registrations }
   
+  # root 'explorer#index'
+  get 'feed/index'
   root 'feed#index'
   get 'explorer/index'
   get 'profile', to: 'profile#index'
