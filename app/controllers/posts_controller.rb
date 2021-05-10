@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ index show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /posts or /posts.json
   def index
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_back fallback_location: root_path }
       format.json { head :no_content }
     end
   end

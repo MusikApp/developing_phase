@@ -1,257 +1,258 @@
 <%= render "partials/nav" %>
-<!--------------------- Start Search/Post Bars--------------------------------->
-<div class="feed">
-  <div class="search-section">
-    <form class="search-bar">
-      <input placeholder="Publicaciones, tendencias." name="query" <%= @q %> >
-      <button type="submit" class="search-submit">Buscar</button>
-    </form>
-  </div>
-  <div class="post-new">
-    <%= render "posts/formv2" %>
-    <%= render "demos/formv2" %>
-  </div>
 
-  <div class="demo">
-    <div class="switch-container">
-      <label class="leyend">¿Quieres publicar un demo?</label>
-      <label class="switch">
-      <input type="checkbox">
-      <span class="slider round"></span>
-    </label>
+  <!--------------------- Start Search/Post Bars--------------------------------->
+  <div class="feed">
+    <div class="search-section">
+      <form class="search-bar">
+        <input placeholder="Publicaciones, tendencias." name="query" <%= @q %> >
+        <button type="submit" class="search-submit">Buscar</button>
+      </form>
     </div>
-  </div>
-<!--------------------- End Search/Post Bars--------------------------------->
+    <div class="post-new">
+      <%= render "posts/formv2" %>
+      <%= render "demos/formv2" %>
+    </div>
+
+    <div class="demo">
+      <div class="switch-container">
+        <label class="leyend">¿Quieres publicar un demo?</label>
+        <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      </div>
+    </div>
+  <!--------------------- End Search/Post Bars--------------------------------->
 
 
-<!--------------------- Start Posts Feed--------------------------------->
-<% if @posts.count > 0 %>
-  <% @posts.each do |post| %>
-    <div class="card">
-      <div class="card-body">
-        <div class="head">
-          <div class="post-avatar">
-            <%= image_tag post.user.avatar_thumbnail, :class => "post-thumbnail" %>
-          </div>
-          <div class="post-title">  
-            <p> <%= link_to(post.user.username, profile_user_path(post.user.id)) %></p>
-            <p class="post-date"><%= I18n.l(post.created_at, format: :long) %></p>
-          </div>
-          
-
-        </div>
-        <br>
-        <div class="post-content">
-          <%= post.content %>
-        </div>
-        <br>
-        <% if post.image.attached? %>
-          <div class="image-wrapper">
-            <%= image_tag post.image_thumbnail, class: "post_image" %>
-          </div>
-        <% end %>
-        <% if post.video.attached? %>
-          <%= video_tag(url_for(post.video), :controls => "", :class => "post_video") %>
-        <% end %>
-
-        <div class="post-stats">
-          <div class="like-stats" id="like_stats_<%= post.id %>">
-            <p data-bs-toggle="modal" data-bs-target="#likesModal<%= post.id %>"><%= post.likes.count %> Me gusta</p>
-          </div>
-          <div class="comment-stats" id="comment_stats_<%= post.id %>">
-            <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comentario' : 'Comentarios'%></p>
-          </div>
-        </div>
-        <hr>
   <!--------------------- Start Posts Feed--------------------------------->
+  <% if @posts.count > 0 %>
+    <% @posts.each do |post| %>
+      <div class="card">
+        <div class="card-body">
+          <div class="head">
+            <div class="post-avatar">
+              <%= image_tag post.user.avatar_thumbnail, :class => "post-thumbnail" %>
+            </div>
+            <div class="post-title">  
+              <p><%= link_to(post.user.username, profile_user_path(post.user.id)) %></p>
+              <p class="post-date"><%= I18n.l(post.created_at, format: :long) %></p>
+            </div>
+            
+
+          </div>
+          <br>
+          <div class="post-content">
+            <%= post.content %>
+          </div>
+          <br>
+          <% if post.image.attached? %>
+            <div class="image-wrapper">
+              <%= image_tag post.image_thumbnail, class: "post_image" %>
+            </div>
+          <% end %>
+          <% if post.video.attached? %>
+            <%= video_tag(url_for(post.video), :controls => "", :class => "post_video") %>
+          <% end %>
+
+          <div class="post-stats">
+            <div class="like-stats" id="like_stats_<%= post.id %>">
+              <p data-bs-toggle="modal" data-bs-target="#likesModal<%= post.id %>"><%= post.likes.count %> Me gusta</p>
+            </div>
+            <div class="comment-stats" id="comment_stats_<%= post.id %>">
+              <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comentario' : 'Comentarios'%></p>
+            </div>
+          </div>
+          <hr>
+    <!--------------------- Start Posts Feed--------------------------------->
 
 
 
-  <!---------------------------- Start Likes Modal ---------------------------->
-                <div class="modal fade" id="likesModal<%= post.id %>" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                      <div class="modal-header ">
-                        <h5 class="modal-title" id="likesModalLabel">Likes</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="container">
-                          <div class="row">
-                              <% post.likes.each do |l| %>
-                                <div class="col-8 mb-4">
-                                  <div class="like-modal-user text-right">
-                                    <div class="post-avatar">
-                                      <%= image_tag l.user.avatar_thumbnail, :class => "post-thumbnail" %>
-                                    </div>
-                                    <div class="post-title">
-                                      <p class="mx-4"><%= link_to l.user.name, profile_user_path(l.user.id) %></p>
-                                      <p class="text-muted post-date mx-4"><%= l.user.username %></p>
+    <!---------------------------- Start Likes Modal ---------------------------->
+                  <div class="modal fade" id="likesModal<%= post.id %>" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <div class="modal-header ">
+                          <h5 class="modal-title" id="likesModalLabel">Likes</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="container">
+                            <div class="row">
+                                <% post.likes.each do |l| %>
+                                  <div class="col-8 mb-4">
+                                    <div class="like-modal-user text-right">
+                                      <div class="post-avatar">
+                                        <%= image_tag l.user.avatar_thumbnail, :class => "post-thumbnail" %>
+                                      </div>
+                                      <div class="post-title">
+                                        <p class="mx-4"><%= link_to l.user.name, profile_user_path(l.user.id) %></p>
+                                        <p class="text-muted post-date mx-4"><%= l.user.username %></p>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div class="col-4 mb-4 text-end">
-                                  <% if l.user.followers.find_by(follower: current_user).present? %>
-                                    <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
-                                  <% elsif %>
-                                    <%= link_to 'Seguir', follow_path(l.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
-                                  <% end %>
-                                </div>
-                              <% end %>
+                                  <div class="col-4 mb-4 text-end">
+                                    <% if l.user.followers.find_by(follower: current_user).present? %>
+                                      <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
+                                    <% elsif %>
+                                      <%= link_to 'Seguir', follow_path(l.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
+                                    <% end %>
+                                  </div>
+                                <% end %>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-  <!---------------------------- End Likes Modal ---------------------------->
-
+    <!---------------------------- End Likes Modal ---------------------------->
 
 
-  <!---------------------------- Start Post Interaction Section ---------------------------->
 
-      <div class="post-interactions">
-        <div class="likes">
-          <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
-          <div class="like" id="like_<%= post.id %>">
-            <% if pre_like %>
-              <%= link_to post_like_path(post, pre_like.id), method: :delete, remote: true do %>
-                <p><i class="fas fa-heart"></i> Me gusta</p>
+    <!---------------------------- Start Post Interaction Section ---------------------------->
+
+        <div class="post-interactions">
+          <div class="likes">
+            <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+            <div class="like" id="like_<%= post.id %>">
+              <% if pre_like %>
+                <%= link_to post_like_path(post, pre_like.id), method: :delete, remote: true do %>
+                  <p><i class="fas fa-heart"></i> Me gusta</p>
+                <% end %>
+              <% else %>
+                <%= link_to post_likes_path(post), method: :post, remote: true do %>
+                  <p><i class="far fa-heart"></i> Me gusta</p>
+                <% end %>
               <% end %>
-            <% else %>
-              <%= link_to post_likes_path(post), method: :post, remote: true do %>
-                <p><i class="far fa-heart"></i> Me gusta</p>
-              <% end %>
-            <% end %>
+            </div>
+            
           </div>
-          
+          <div class="comments">
+            <% pre_comment = post.comments.find { |comment| comment.user_id == current_user.id } %>
+            <% if pre_comment %>
+              <p><i class="fas fa-comment"></i> Comentar</p>
+            <% else %>
+              <p><i class="far fa-comment"></i> Comentar</p>
+            <% end %> 
+          </div>
         </div>
-        <div class="comments">
-          <% pre_comment = post.comments.find { |comment| comment.user_id == current_user.id } %>
-          <% if pre_comment %>
-            <p><i class="fas fa-comment"></i> Comentar</p>
-          <% else %>
-            <p><i class="far fa-comment"></i> Comentar</p>
-          <% end %> 
-        </div>
-      </div>
-      <hr>
-  <!---------------------------- End Post Interaction Section ---------------------------->
+        <hr>
+    <!---------------------------- End Post Interaction Section ---------------------------->
 
 
 
-  <!---------------------------- Start Comment Section ---------------------------->
-          <div class="comments-section">
+    <!---------------------------- Start Comment Section ---------------------------->
+            <div class="comments-section">
 
-            <% post.comments.each do |comment| %>
-            <% if !comment.reply_id %>
-              <div class="comment-content">
-                <div class="content-head">
-                  <%= image_tag comment.user.avatar_thumbnail, class: "comment-content-thumbnail" %>
+              <% post.comments.each do |comment| %>
+              <% if !comment.reply_id %>
+                <div class="comment-content">
+                  <div class="content-head">
+                    <%= image_tag comment.user.avatar_thumbnail, class: "comment-content-thumbnail" %>
+                  </div>
+                  <div class="content-body">
+                    <p><%= link_to(comment.user.username, profile_user_path(comment.user.id)) %> <br> <%= comment.content %></p>
+                  </div>
                 </div>
-                <div class="content-body">
-                  <p><%= link_to(comment.user.username, profile_user_path(comment.user.id)) %> <br> <%= comment.content %></p>
-                </div>
-              </div>
-              <div class="reply-action">
-                  <h6>Responder</h6>
-                  <div class="replying">
-                    <div class="replying-body">
-                      <div class="replying-head">
-                        <%= image_tag current_user.avatar_thumbnail, :class => "replying-thumbnail" %>
-                      </div>
-                      <div class="reply-form">
-                        <%= form_with url: new_reply_path(post.id, comment.id), method: :post do |f| %>
-                          <%= f.text_field :content, placeholder: "Responder" %>
-                        <% end %>
+                <div class="reply-action">
+                    <h6>Responder</h6>
+                    <div class="replying">
+                      <div class="replying-body">
+                        <div class="replying-head">
+                          <%= image_tag current_user.avatar_thumbnail, :class => "replying-thumbnail" %>
+                        </div>
+                        <div class="reply-form">
+                          <%= form_with url: new_reply_path(post.id, comment.id), method: :post do |f| %>
+                            <%= f.text_field :content, placeholder: "Responder" %>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+              <% end %>
+
+              <% if comment.replies.any? %>
+                <% comment.replies.each do |reply| %>
+                  <div class="reply-content">
+                    <div class="reply-head">
+                      <%= image_tag reply.user.avatar_thumbnail, class: "reply-content-thumbnail" %>
+                    </div>
+                    <div class="reply-body">
+                      <p><%= link_to(reply.user.username, profile_user_path(reply.user.id)) %> <br> <%= reply.content %></p>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %> 
+
             <% end %>
 
-            <% if comment.replies.any? %>
-              <% comment.replies.each do |reply| %>
-                <div class="reply-content">
-                  <div class="reply-head">
-                    <%= image_tag reply.user.avatar_thumbnail, class: "reply-content-thumbnail" %>
-                  </div>
-                  <div class="reply-body">
-                    <p><%= link_to(reply.user.username, profile_user_path(reply.user.id)) %> <br> <%= reply.content %></p>
-                  </div>
-                </div>
-              <% end %>
-            <% end %> 
-
-          <% end %>
-
-          <div class="comment-form">
-            <div class="comment-head">
-              <%= image_tag current_user.avatar_thumbnail, :class => "comment-thumbnail" %>
-            </div>
-            <div class="comment-body">
-              <%= form_with url: new_comment_path(post.id), method: :post do |f| %>
-                <%= f.text_field :content, placeholder: "Comentar" %>
-              <% end %>
-            </div>
-          </div>
-        
-          </div>
-  <!---------------------------- End Comment Section ---------------------------->
-
-        </div>
-
-    </div>
-
-  <% end %>
-
-
-
-<% else %>
-  <div class="welcome">
-    <h2 class="welcome-page">Bienvenido a MusikApp</h2>
-    <p class="welcome-page">Las publicaciones de las personas que sigas, se motrarán aquí.</p>
-  </div>
-    <!--Welcome sugestions cards carousel-->
-  <div class="suggestions mt-5">
-    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-      <div class="carousel-inner">
-        <% @welcome_users.sample(5).each.with_index(0) do |user, index| %>
-          <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
-            <div class="welcome-card">
-              <div class="text-center mt-4">
-                <%= image_tag user.avatar_thumbnail, :class => "profile-thumbnail" %>
+            <div class="comment-form">
+              <div class="comment-head">
+                <%= image_tag current_user.avatar_thumbnail, :class => "comment-thumbnail" %>
               </div>
-              <div class="text-center">
-                <h5 class="text-center"><%= user.username %></h5>
-                <p class="text-center"><small><%= "#{user.name} #{user.last_name}" %></small></p>
-              </div>
-              <div class="text-center suggestion-follow" id="suggestions_<%= user.id %>">
-                <% if user.followers.find_by(follower: current_user).present? %>
-                  <p class="text-center">¡Siguiendo!</p>
-                <% else %>
-                  <%= link_to 'Seguir', follow_path(user), class: "suggestion-button", remote: true, method: :post %>
+              <div class="comment-body">
+                <%= form_with url: new_comment_path(post.id), method: :post do |f| %>
+                  <%= f.text_field :content, placeholder: "Comentar" %>
                 <% end %>
               </div>
-              <p class="text-center" id="follow_stats_<%= user.id %>"><small><%= user.followers.count %> <%= (user.followers.count) == 1 ? 'Seguidor' : 'Seguidores'%></small></p>
-              <p class="text-center"><small>Recommendado por <br> MusikApp</small></p>
-              <button class="carousel-dark carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-dark carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
             </div>
-          </div>
-        <% end %>
-      </div>  
-    </div>
-  </div>
-<!---------------------------- End Welcome Section ---------------------------->
-<% end %>
-</div>
+          
+            </div>
+    <!---------------------------- End Comment Section ---------------------------->
 
+          </div>
+
+      </div>
+
+    <% end %>
+
+
+
+  <% else %>
+    <div class="welcome">
+      <h2 class="welcome-page">Bienvenido a MusikApp</h2>
+      <p class="welcome-page">Las publicaciones de las personas que sigas, se motrarán aquí.</p>
+    </div>
+      <!--Welcome sugestions cards carousel-->
+    <div class="suggestions mt-5">
+      <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+        <div class="carousel-inner">
+          <% @welcome_users.sample(5).each.with_index(0) do |user, index| %>
+            <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
+              <div class="welcome-card">
+                <div class="text-center mt-4">
+                  <%= image_tag user.avatar_thumbnail, :class => "profile-thumbnail" %>
+                </div>
+                <div class="text-center">
+                  <h5 class="text-center"><%= user.username %></h5>
+                  <p class="text-center"><small><%= "#{user.name} #{user.last_name}" %></small></p>
+                </div>
+                <div class="text-center suggestion-follow" id="suggestions_<%= user.id %>">
+                  <% if user.followers.find_by(follower: current_user).present? %>
+                    <p class="text-center">¡Siguiendo!</p>
+                  <% else %>
+                    <%= link_to 'Seguir', follow_path(user), class: "suggestion-button", remote: true, method: :post %>
+                  <% end %>
+                </div>
+                <p class="text-center" id="follow_stats_<%= user.id %>"><small><%= user.followers.count %> <%= (user.followers.count) == 1 ? 'Seguidor' : 'Seguidores'%></small></p>
+                <p class="text-center"><small>Recommendado por <br> MusikApp</small></p>
+                <button class="carousel-dark carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-dark carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          <% end %>
+        </div>  
+      </div>
+    </div>
+  <!---------------------------- End Welcome Section ---------------------------->
+  <% end %>
+  </div>
+  
 <%= render 'partials/foot' %>

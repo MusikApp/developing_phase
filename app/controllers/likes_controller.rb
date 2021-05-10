@@ -2,6 +2,7 @@ class LikesController < ApplicationController
   before_action :set_like, only: %i[ destroy ]
   before_action :find_post
   before_action :find_like, only: %i[destroy]
+  before_action :authenticate_user!
 
   def index
   end

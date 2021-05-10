@@ -1,5 +1,6 @@
 class DemosController < ApplicationController
   before_action :set_demo, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /demos or /demos.json
   def index
