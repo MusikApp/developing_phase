@@ -236,18 +236,10 @@
                     <p class="card-text text-center muted"><small><%= "#{user.name} #{user.last_name}" %></small></p>
                   </div>
                   <div class="text-center mt-1 mb-4">
-                    <%= link_to 'Seguir', follow_path(user.id), method: :post, class: "btn btn-outline-secondary btn-sm" %> 
+                    <%= link_to 'Seguir', follow_path(user), class: "edit-button", remote: true, method: :post unless user.followers.find_by(follower: current_user).present? %>
+                    <%= link_to 'Dejar de Seguir', unfollow_path(user.followers.find_by(follower: current_user)), class: "edit-button", remote: true, method: :delete if user.followers.find_by(follower: current_user).present? %>
                     <p class="card-text text-center muted"><small><%= user.followers.count %> <%= (user.followers.count) == 1 ? 'Seguidor' : 'Seguidores'%></small></p>
                   </div>
-                  <% @welcome_posts.each do |post| %>
-                    <% if post.user_id == user.id %>
-                      <% if post.image.attached? %>
-                          <div class="image-wrapper">
-                            <%= image_tag post.image_thumbnail, class: "post_image" %>
-                          </div>
-                      <% end %>
-                    <% end %>
-                  <% end %>
                   <p class="text-center"><small>Recommendado por <br> MusikApp</small></p>
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -267,11 +259,7 @@
   </div>
 <!---------------------------- End Welcome Section ---------------------------->
 
-  <div class="welcome">
-    <h2 class="welcome-page">Bienvenide a MusikApp</h2>
-    <p class="welcome-page">Las publicaciones de las personas que sigas, se motrarán aquí.</p>
-    <p class="welcome-page"><strong>Selecciona la pestaña explorar para conectar con más gente.</strong></p>
-  </div>
+  
 <% end %>
 </div>
 

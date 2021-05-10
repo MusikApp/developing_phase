@@ -9,6 +9,8 @@
         <div class="name">
             <h2><%= current_user.username %></h2>
             <%= link_to 'Editar Perfil', edit_user_registration_path, class: "edit-button" %>
+            <%= link_to 'Seguir', follow_path(user), class: "edit-button", remote: true, method: :post unless user.followers.find_by(follower: current_user).present? %>
+            <%= link_to 'Dejar de Seguir', unfollow_path(user.followers.find_by(follower: current_user)), class: "edit-button", remote: true, method: :delete if user.followers.find_by(follower: current_user).present? %>
         </div>
         <ul class="d-inline-flex">
             <li><strong><%= current_user.posts.count %></strong> Publicaciones</li>
