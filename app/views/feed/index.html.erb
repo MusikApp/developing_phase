@@ -25,6 +25,23 @@
   <!--------------------- End Search/Post Bars--------------------------------->
 
 
+<!------------------------ Start Search Button Spotify ---------------------------------->
+  <div class="container">
+    <h1>Busca a un Artista</h1>
+    <p><small>Escribe el nombre de un artista y dale click en 'Buscar.' Luego dale click a cualquier album para escuchar 30s de la primera canción!</small></p>
+    <form id="search-form">
+      <input type="text" id="query" value="" class="form-control" placeholder="Escribe el nombre del artista"/>
+      <input id="search" class="btn btn-primary" value="Buscar"/>
+    </form>
+
+    <div id="results">
+    </div>
+  </div>
+
+     <!-- Este fragmento tiene un bloque de codigo js <Scrip> en el application.html.erb -->
+<!------------------------ End Search Button Spotify  ---------------------------------->
+
+
   <!--------------------- Start Posts Feed--------------------------------->
   <% if @posts.count > 0 %>
     <% @posts.each do |post| %>
