@@ -2,6 +2,7 @@
 
 $("#buttons").html('<%= link_to 'Dejar de Seguir', unfollow_path, method: "delete", remote: "true", class: "edit-button" %>')
 $("#edit-mobile").html('<%= link_to 'Dejar de Seguir', unfollow_path, method: "delete", remote: "true", class: "edit-button-mobile" %>')
+$("#buttons-modals").html('<%= link_to "Chat", rooms_path(user_id: @user.id), method: :posts, class: "btn btn-outline-secondary btn-sm" %>')
 $("#follow-stats").html('<strong><%= @user.followers.count %></strong> Seguidores')
 $("#suggestions_<%= @user.id %>").html('<p class="text-center">¡Siguiendo!</p>')
 $("#follow_stats_<%= @user.id %>").html('<small><%= @user.followers.count %> <%= (@user.followers.count) == 1 ? 'Seguidor' : 'Seguidores'%></small>')

@@ -501,6 +501,16 @@ body {
     margin-bottom: 15px;
 }
 
+.suggestion-profile {
+    color: rgb(96, 114, 131);
+    text-decoration: none;
+    font-size: 1.4rem;
+}
+
+.suggestion-profile:hover {
+    color: rgb(181, 195, 208)
+}
+
 .suggestion-button {
     background-color: rgb(96, 114, 131);
     padding: 5px 10px;

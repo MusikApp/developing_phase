@@ -25,21 +25,6 @@
   <!--------------------- End Search/Post Bars--------------------------------->
 
 
-<!------------------------ Start Search Button Spotify ---------------------------------->
-  <div class="container">
-    <h1>Busca a un Artista</h1>
-    <p><small>Escribe el nombre de un artista y dale click en 'Buscar.' Luego dale click a cualquier album para escuchar 30s de la primera canción!</small></p>
-    <form id="search-form">
-      <input type="text" id="query" value="" class="form-control" placeholder="Escribe el nombre del artista"/>
-      <input id="search" class="btn btn-primary" value="Buscar"/>
-    </form>
-
-    <div id="results">
-    </div>
-  </div>
-
-     <!-- Este fragmento tiene un bloque de codigo js <Scrip> en el application.html.erb -->
-<!------------------------ End Search Button Spotify  ---------------------------------->
 
 
   <!--------------------- Start Posts Feed--------------------------------->
@@ -109,10 +94,14 @@
                                     </div>
                                   </div>
                                   <div class="col-4 mb-4 text-end">
-                                    <% if l.user.followers.find_by(follower: current_user).present? %>
-                                      <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
-                                    <% elsif %>
-                                      <%= link_to 'Seguir', follow_path(l.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
+                                    <% unless l.user_id == current_user.id %>
+                                      <% if l.user.followers.find_by(follower: current_user).present? %>
+                                        <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
+                                      <% elsif %>
+                                      <div id="buttons-modals">
+                                        <%= link_to 'Seguir', follow_path(l.user.id), method: :post, remote: true, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
+                                      </div>
+                                      <% end %>
                                     <% end %>
                                   </div>
                                 <% end %>
@@ -242,7 +231,8 @@
                   <%= image_tag user.avatar_thumbnail, :class => "profile-thumbnail" %>
                 </div>
                 <div class="text-center">
-                  <h5 class="text-center"><%= user.username %></h5>
+                  <h5 class="text-center">
+                    <%= link_to user.username, profile_user_path(user.id), class: "suggestion-profile" %></h5>
                   <p class="text-center"><small><%= "#{user.name} #{user.last_name}" %></small></p>
                 </div>
                 <div class="text-center suggestion-follow" id="suggestions_<%= user.id %>">
