@@ -38,9 +38,7 @@
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to(new_user_session_path) do %>
-                <p class="nav-link">Sign In</p>
-              <% end %>
+              <%= link_to 'Ingresar', new_user_session_path, class: 'nav-link fw-bolder' %>
             </li>
           <% end %>
         </ul>

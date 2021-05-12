@@ -60,6 +60,10 @@ body {
     margin-left: 15px;
 }
 
+.nav-link a {
+    outline: none;
+}
+
 .footer {
     display: none;
 }
