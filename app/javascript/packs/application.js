@@ -138,16 +138,7 @@ $(document).on('turbolinks:load', function(e) {
         $(".footer-search-section").toggle();
     })
 
-    $(document).on("mouseup", function(e) {
-        const container = $(".footer-search-section");
     
-        if (!container.is(e.target)) 
-        {
-            container.hide(); 
-            $(".foot-search").removeClass("active");
-        }
-    })
-
     /* Navbar Menu */
 
     $(".navbar-thumbnail").on("click", function() {
@@ -191,8 +182,11 @@ $(document).on('turbolinks:load', function(e) {
         $(".author").toggle()
     })*/
     var results = $("#results");
+    var resultsTitle = $("#results-title")
     var search = $("#search");
-    search.on('click', function(){
+    search.on('click', function(e){
+        e.preventDefault();
+        
         var query = $("#query").val();
             $.ajax({
                 url: "https://theaudiodb.com/api/v1/json/1/search.php?s=" + query,
@@ -200,112 +194,18 @@ $(document).on('turbolinks:load', function(e) {
                 dataType: "json",
                 success: function(data) {
                     $.each(data.artists, function(i=0, artist){
-                        results.html(`
-                            <ul>
-                                <li> Nombre : ${artist.strArtist} </li>
-                                <li> Disquera : ${artist.strLabel} </li>
-                                <li> Genero : ${artist.strGenre} </li>
-                                <li> <img src="${artist.strArtistThumb}"> </li>
 
+                        resultsTitle.html(`${artist.strArtist}`)
+
+                        results.html(`
+                            <ul class="artist-details">
+                                <li> Disquera: ${artist.strLabel} </li>
+                                <li> Genero: ${artist.strGenre} </li>
+                                <li> Debut: ${artist.intFormedYear} </li>
+                                <li> <img src="${artist.strArtistThumb}" class="artist-thumb"> </li>
                             </ul>`);
                     })
                 }
             });
     })
-
-    // const getData = () => {
-    //     var query = $("#query").value;
-    //     console.log(query)
-    //         $.ajax({
-    //             url: "https://theaudiodb.com/api/v1/json/1/search.php?s=" + query,
-    //             method: "GET",
-    //             dataType: "json",
-    //             success: function(artist) {
-    //                 var str = "";          
-    //                 str += '<p> Label : '+artist.strLabel+' </p>';               
-    //                 results.innerHTML = str;
-    //             }
-    //         });
-    // }
-
 })
-
-
-
-// Spotify API
-
-//find template and compile it
-// var templateSource = document.getElementById('results-template').innerHTML,
-    // template = Handlebars.compile(templateSource),
-    // resultsPlaceholder = document.getElementById('results')
-    // playingCssClass = 'playing',
-    // audioObject = null;
-
-// var fetchTracks = function (albumId, callback) {
-//     $.ajax({
-//         url: 'https://api.spotify.com/v1/albums/' + albumId,
-//         success: function (response) {
-//             callback(response);
-//         }
-//     });
-// };
-
-// var searchAlbums = function (query) {
-    // $.ajax({
-    //     dataType: "json",
-    //     url: 'theaudiodb.com/api/v1/json/1/search.php?s=coldplay',
-    //     success: function (response) {
-    //         $('#results').append('<p>'+ response.strLabel +'</p>')
-    //         // resultsPlaceholder.innerHTML = template(response);
-    //     }
-    // });
-// };
-
-
-
-// results.addEventListener('click', function (e) {
-//     var target = e.target;
-//     if (target !== null && target.classList.contains('cover')) {
-//         if (target.classList.contains(playingCssClass)) {
-//             audioObject.pause();
-//         } else {
-//             if (audioObject) {
-//                 audioObject.pause();
-//             }
-//             fetchTracks(target.getAttribute('data-album-id'), function (data) {
-//                 audioObject = new Audio(data.tracks.items[0].preview_url);
-//                 audioObject.play();
-//                 target.classList.add(playingCssClass);
-//                 audioObject.addEventListener('ended', function () {
-//                     target.classList.remove(playingCssClass);
-//                 });
-//                 audioObject.addEventListener('pause', function () {
-//                     target.classList.remove(playingCssClass);
-//                 });
-//             });
-//         }
-//     }
-// });
-
-// document.getElementById('search-form').addEventListener('submit', function (e) {
-//     e.preventDefault();
-//     searchAlbums(document.getElementById('query').value);
-// }, false);
-
-
-// var searchAlbums = function (query) {
-//     $.ajax({
-//         dataType: "json",
-//         url: 'theaudiodb.com/api/v1/json/1/search.php?s=' + query,
-//         success: function (response) {
-//             response.strLabel
-//             console.log(response.strLabel)
-//             // resultsPlaceholder.innerHTML = template(response);
-//         }
-//     });
-// };
-
-// $('search-form').on('submit', function (e) {
-//     e.preventDefault();
-//     searchAlbums($('query').value);
-// }, false);

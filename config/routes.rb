@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   
   # root 'explorer#index'
   get 'feed/index'
+  get 'statistics/index'
   root 'feed#index'
   get 'explorer/index'
   get 'profile', to: 'profile#index'

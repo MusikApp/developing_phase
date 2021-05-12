@@ -26,18 +26,28 @@
 
 
 <!------------------------ Start Search Button Spotify ---------------------------------->
-  <div class="container">
-    <h1>Busca a un Artista</h1>
-    <p><small>Escribe el nombre de un artista y dale click en 'Buscar.' Luego dale click a cualquier album para escuchar 30s de la primera canción!</small></p>
+  <div class="musicdb">
+    <p>Busca información de artistas en MusicDB</p>
     <form id="search-form">
       <input type="text" id="query" value="" class="form-control" placeholder="Escribe el nombre del artista"/>
-      <input id="search" class="btn btn-primary" value="Buscar"/>
+      <button id="search" class="api-submit" data-bs-toggle="modal" data-bs-target="#apiModal">Buscar</button>
     </form>
-
-    <div id="results">
-    </div>
   </div>
 
+
+  <div class="modal fade" id="apiModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="results-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="results">
+
+        </div>
+      </div>
+    </div>
+  </div>
      <!-- Este fragmento tiene un bloque de codigo js <Scrip> en el application.html.erb -->
 <!------------------------ End Search Button Spotify  ---------------------------------->
 
