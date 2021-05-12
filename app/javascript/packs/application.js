@@ -138,16 +138,7 @@ $(document).on('turbolinks:load', function(e) {
         $(".footer-search-section").toggle();
     })
 
-    $(document).on("mouseup", function(e) {
-        const container = $(".footer-search-section");
     
-        if (!container.is(e.target)) 
-        {
-            container.hide(); 
-            $(".foot-search").removeClass("active");
-        }
-    })
-
     /* Navbar Menu */
 
     $(".navbar-thumbnail").on("click", function() {
@@ -185,7 +176,36 @@ $(document).on('turbolinks:load', function(e) {
         }
     })
 
+    /* chatroom 
 
+    $(".message").on("click", function(){
+        $(".author").toggle()
+    })*/
+    var results = $("#results");
+    var resultsTitle = $("#results-title")
+    var search = $("#search");
+    search.on('click', function(e){
+        e.preventDefault();
+        
+        var query = $("#query").val();
+            $.ajax({
+                url: "https://theaudiodb.com/api/v1/json/1/search.php?s=" + query,
+                method: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $.each(data.artists, function(i=0, artist){
+
+                        resultsTitle.html(`${artist.strArtist}`)
+
+                        results.html(`
+                            <ul class="artist-details">
+                                <li> Disquera: ${artist.strLabel} </li>
+                                <li> Genero: ${artist.strGenre} </li>
+                                <li> Debut: ${artist.intFormedYear} </li>
+                                <li> <img src="${artist.strArtistThumb}" class="artist-thumb"> </li>
+                            </ul>`);
+                    })
+                }
+            });
+    })
 })
-
-

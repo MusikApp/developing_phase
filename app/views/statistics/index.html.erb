@@ -1,0 +1,16 @@
+<%= render 'partials/nav' %>
+<div class="graphs container">
+    <div class="comments_graph container">
+        <h4 class="text-center graph-title">Comentarios Semanales</h4>
+        <%= column_chart @user_comments %>
+    </div>
+    <div class="posts_graph container">
+        <h4 class="text-center graph-title">Publicaciones Semanales</h4>
+        <%= column_chart @user_posts %>
+    </div>
+    <div class="demos_graph container">
+        <h4 class="text-center graph-title">Demos Semanales</h4>
+        <%= column_chart @user_demos %>
+    </div>
+</div>
+<%= render 'partials/foot_variant' %>
