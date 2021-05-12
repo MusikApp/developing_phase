@@ -4,15 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :following, foreign_key: "follower_id", class_name: "Relationship"
-  has_many :followers, foreign_key: "followed_id", class_name: "Relationship"
-  has_many :posts
-  has_many :demos
+  has_many :following, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+  has_many :followers, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :demos, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :messages
-  has_many :rooms, foreign_key: :sender_id
-  has_many :notifications, as: :recipient
+  has_many :messages, dependent: :destroy
+  has_many :rooms, foreign_key: :sender_id, dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy
 
   def self.followed_user(user)
     where(id: user.following.collect(&:followed_id))

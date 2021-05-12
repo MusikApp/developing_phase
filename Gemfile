@@ -68,3 +68,5 @@ gem "chartkick", "~> 4.0"
 gem "groupdate", "~> 5.2"
 
 gem "faker", "~> 2.17"
+
+gem 'activeadmin'
