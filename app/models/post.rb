@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   validate :acceptable_image
   validate :acceptable_video
+  validates :content, presence: { message: "El post debe tener contenido" }
 
   def image_thumbnail
     if image.attached?

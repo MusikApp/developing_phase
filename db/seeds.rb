@@ -13,7 +13,7 @@ Post.destroy_all
   users = User.new(
     name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    username: "username",
+    username: "username#{i += 1}",
     email: "user#{i += 1}@test.com",
     password: '123123',
     description: Faker::Quote.famous_last_words

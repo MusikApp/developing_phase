@@ -73,13 +73,60 @@
                 </div>
 <div class="post-stats">
           <div class="like-stats" id="like_stats_<%= post.id %>">
-            <p><%= post.likes.count %> Me gusta</p>
+            <p data-bs-toggle="modal" data-bs-target="#likesModal<%= post.id %>"><%= post.likes.count %> Me gusta</p>
           </div>
           <div class="comment-stats" id="comment_stats_<%= post.id %>">
             <p><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comentario' : 'Comentarios'%></p>
           </div>
         </div>
         <hr>
+
+<!---------------------------- Start Likes Modal ---------------------------->
+    <div class="modal fade" id="likesModal<%= post.id %>" tabindex="-1" aria-labelledby="likesModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header ">
+            <h5 class="modal-title" id="likesModalLabel">Likes</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                  <% post.likes.each do |l| %>
+                    <div class="col-8 mb-4">
+                      <div class="like-modal-user text-right">
+                        <div class="post-avatar">
+                          <%= image_tag l.user.avatar_thumbnail, :class => "post-thumbnail" %>
+                        </div>
+                        <div class="post-title">
+                          <p class="mx-4"><%= link_to l.user.name, profile_user_path(l.user.id) %></p>
+                          <p class="text-muted post-date mx-4"><%= l.user.username %></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4 mb-4 text-end">
+                      <% unless l.user_id == current_user.id %>
+                        <% if l.user.followers.find_by(follower: current_user).present? %>
+                          <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
+                        <% elsif %>
+                          <div id="buttons-modals">
+                            <%= link_to 'Seguir', follow_path(l.user.id), method: :post, remote: true, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!---------------------------- End Likes Modal ---------------------------->
+
+
+
 
       <div class="post-interactions">
         <div class="likes">

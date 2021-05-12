@@ -119,10 +119,14 @@
                                     </div>
                                   </div>
                                   <div class="col-4 mb-4 text-end">
-                                    <% if l.user.followers.find_by(follower: current_user).present? %>
-                                      <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
-                                    <% elsif %>
-                                      <%= link_to 'Seguir', follow_path(l.user.id), method: :post, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
+                                    <% unless l.user_id == current_user.id %>
+                                      <% if l.user.followers.find_by(follower: current_user).present? %>
+                                        <%= link_to "Chat", rooms_path(user_id: l.user.id), method: :posts, class: "btn btn-outline-secondary btn-sm"  %>
+                                      <% elsif %>
+                                      <div id="buttons-modals">
+                                        <%= link_to 'Seguir', follow_path(l.user.id), method: :post, remote: true, class: "btn btn-outline-secondary btn-sm" unless l.user.followers.find_by(follower: current_user).present? %> 
+                                      </div>
+                                      <% end %>
                                     <% end %>
                                   </div>
                                 <% end %>
@@ -252,7 +256,8 @@
                   <%= image_tag user.avatar_thumbnail, :class => "profile-thumbnail" %>
                 </div>
                 <div class="text-center">
-                  <h5 class="text-center"><%= user.username %></h5>
+                  <h5 class="text-center">
+                    <%= link_to user.username, profile_user_path(user.id), class: "suggestion-profile" %></h5>
                   <p class="text-center"><small><%= "#{user.name} #{user.last_name}" %></small></p>
                 </div>
                 <div class="text-center suggestion-follow" id="suggestions_<%= user.id %>">

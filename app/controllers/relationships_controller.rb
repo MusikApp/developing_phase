@@ -8,6 +8,7 @@ class RelationshipsController < ApplicationController
                                      followed_id: other_user.id)
             @rel.save
 
+            format.html{ redirect_back fallback_location: @rel}
             format.js{}
         end
     end
@@ -18,6 +19,7 @@ class RelationshipsController < ApplicationController
             @rel = Relationship.find(current_user.following.where(followed_id: other_user.id).ids.first)
             @rel.destroy
 
+            format.html{ redirect_back fallback_location: @rel }
             format.js{}
         end
     end
