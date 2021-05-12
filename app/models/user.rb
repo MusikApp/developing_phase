@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :rooms, foreign_key: :sender_id, dependent: :destroy
-  # has_many :notifications, as: :recipient, dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy
 
   def self.followed_user(user)
     where(id: user.following.collect(&:followed_id))
